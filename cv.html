@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hassan El Bouz — CV</title>
+  <style>
+    :root{
+      --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
+      --line:#1f2430; --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --rose:#fb7185; --br:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; color:var(--text);
+      background:
+        radial-gradient(900px 420px at 70% -10%, rgba(78,168,255,.12), transparent),
+        radial-gradient(620px 320px at 15% 85%, rgba(126,231,135,.10), transparent),
+        radial-gradient(500px 500px at 90% 90%, rgba(167,139,250,.10), transparent),
+        var(--bg);
+      background-attachment: fixed;
+      line-height:1.75;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1400px;margin:0 auto;padding:28px}
+
+    header{padding:18px 0 8px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
+    .title h1{margin:0; font-size:34px; background:linear-gradient(135deg,var(--brand),var(--violet)); -webkit-background-clip:text; color:transparent}
+    .title .tag{margin-top:6px; color:var(--muted)}
+    .nav{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:linear-gradient(135deg,var(--card),#1a1f2c)}
+
+    .section{margin:28px 0}
+    .section h2{font-size:20px; margin:0 0 12px; background:linear-gradient(135deg,var(--accent),var(--rose)); -webkit-background-clip:text; color:transparent}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--br); padding:20px; box-shadow:0 8px 25px rgba(0,0,0,.25)}
+    .stack{display:flex; flex-direction:column; gap:16px}
+
+    ul{margin:6px 0 0 20px}
+    li{margin:6px 0}
+
+    .two{display:grid; grid-template-columns:2fr 1fr; gap:24px}
+    @media (max-width:1100px){.two{grid-template-columns:1fr}}
+
+    .divider{height:1px; background:var(--line); margin:10px 0}
+
+    .pills{display:flex; gap:8px; flex-wrap:wrap}
+    .pill{display:inline-flex; padding:4px 8px; border:1px solid #263043; border-radius:999px; color:var(--muted); font-size:12px; background:linear-gradient(135deg,#1a1f2c,#171b27)}
+
+    h3{margin:0 0 2px; font-size:16px}
+    .sub{color:var(--muted); font-size:14px}
+
+    footer{margin-top:40px; padding:20px; text-align:center; font-size:14px; color:var(--muted); border-top:1px solid var(--line)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Hassan El Bouz</h1>
+        <div class="tag">Quantum Engineering student • ETH Zurich</div>
+      </div>
+      <nav class="nav">
+        <a class="chip" href="index.html">Home</a>
+        <a class="chip" href="projects.html">Projects</a>
+        <a class="chip" href="CV.pdf" download>Download PDF</a>
+      </nav>
+    </header>
+
+    <div class="two">
+      <main class="stack">
+        <section class="section card">
+          <h2>Education</h2>
+          <h3>M.Sc. Quantum Engineering — ETH Zurich</h3>
+          <div class="sub">2025–2027 • Zurich, Switzerland</div>
+          <ul>
+            <li>Focus: Quantum information, algorithms, and electronics.</li>
+            <li>Sample courses: Quantum Information Processing, Advanced ML, Information Theory.</li>
+          </ul>
+          <div class="divider"></div>
+          <h3>B.S. Physics & Pure Mathematics — AUB</h3>
+          <div class="sub">2022–2025 • Beirut, Lebanon • GPA 4.22/4.0</div>
+          <ul>
+            <li>Awards: Merit Scholarship; AUB Honor List (all semesters); Muhanna Foundation (Math); Teddy Christidis (Physics); Dr. Mohammad Chatah (Excellence).</li>
+          </ul>
+        </section>
+
+        <section class="section card">
+          <h2>Publications</h2>
+          <h3>On the local behavior of chains on strongly pseudoconvex hypersurfaces in C<sup>3</sup></h3>
+          <div class="sub">N. Bakaev, S. Ban, <u>H. El Bouz</u>, G. Della Sala, A. Hussein, J. Moussa • Proc. AMS (2025)
+            — <a href="https://www.ams.org/journals/proc/2025-153-07/S0002-9939-2025-17225-2/" target="_blank" rel="noopener">Publisher</a></div>
+        </section>
+
+        <section class="section card">
+          <h2>Research Experience</h2>
+          <div class="stack">
+            <div>
+              <h3>Chains on Strongly Pseudoconvex Hypersurfaces</h3>
+              <div class="sub">AUB • Supervisor: Prof. Giuseppe Della Sala • Jun 2023 – Jun 2024</div>
+              <ul><li>Fefferman metric + Chern–Moser normal form to classify hypersurfaces; studied null geodesics and chains.</li></ul>
+            </div>
+            <div class="divider"></div>
+            <div>
+              <h3>Spatio‑Temporal Epidemiology with Memory</h3>
+              <div class="sub">AUB • Supervisor: Prof. Fatima Mroueh • Jun 2024 – Present</div>
+              <ul><li>Integro‑differential epidemic model with memory; numerical solvers; manuscript submitted.</li></ul>
+            </div>
+            <div class="divider"></div>
+            <div>
+              <h3>Path‑Integral Entropy Loss for Sparse Autoencoders</h3>
+              <div class="sub">AUB • Supervisor: Dr. Sara Najem • May 2025 – Present</div>
+              <ul><li>Entropy‑based sparsity in PyTorch autoencoders; pruning inactive neurons.</li></ul>
+            </div>
+            <div class="divider"></div>
+            <div>
+              <h3>Distributed Quantum Systems</h3>
+              <div class="sub">AUB • Supervisor: Prof. Mahdi Chehimi • Nov 2024 – Jul 2025</div>
+              <ul><li>Teleported two‑qubit gates; compared resource counts vs direct compilation.</li></ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>Selected Projects</h2>
+          <h3>Graph‑Coloring via Markov Chains</h3>
+          <div class="sub">Python • MCMC • Complexity — <a href="projects.html">details</a></div>
+          <ul><li>Polynomial‑time estimator for k‑colorings on sparse graphs using single‑site dynamics and conflict‑aware resampling.</li></ul>
+          <div class="divider"></div>
+          <h3>Dynamic Structure Autoencoder (Capstone)</h3>
+          <div class="sub">Python • PyTorch • 2025</div>
+          <ul><li>Model adapts hidden/latent size during training; entropy‑inspired sparsity yields efficient representations.</li></ul>
+        </section>
+      </main>
+
+      <aside class="stack">
+        <section class="section card">
+          <h2>Contact</h2>
+          <div>Email: <a href="mailto:helbouz@ethz.ch">helbouz@ethz.ch</a></div>
+          <div>Phone: +41 79 475 11 76 • +961 76 721 355</div>
+          <div>GitHub: <a href="https://github.com/Habouz" target="_blank" rel="noopener">github.com/Habouz</a></div>
+          <div>LinkedIn: <a href="https://linkedin.com/in/hassan-el-bouz-444895177/" target="_blank" rel="noopener">linkedin.com/in/hassan-el-bouz-444895177/</a></div>
+        </section>
+
+        <section class="section card">
+          <h2>Skills</h2>
+          <div class="pills">
+            <span class="pill">Python</span>
+            <span class="pill">C++</span>
+            <span class="pill">Java</span>
+            <span class="pill">MATLAB</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">LaTeX</span>
+            <span class="pill">PyTorch</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">Git • Linux</span>
+            <span class="pill">Qiskit</span>
+            <span class="pill">Quantum Info</span>
+            <span class="pill">Numerical Opt.</span>
+            <span class="pill">Algorithms</span>
+            <span class="pill">Math Physics</span>
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>Coursework</h2>
+          <ul>
+            <li>Computational Physics & Machine Learning</li>
+            <li>Advanced Quantum Mechanics</li>
+            <li>Applied Probability Models — Markov Chains</li>
+            <li>Linear Algebra II; Modules & Rings</li>
+            <li>Topology</li>
+            <li>Symmetries in Physics</li>
+          </ul>
+        </section>
+
+        <section class="section card">
+          <h2>Seminars & Teaching</h2>
+          <ul>
+            <li>Seminars: chains on pseudoconvex hypersurfaces; spatio‑temporal epidemic models; Jordan forms.</li>
+            <li>Tutored undergrads in AUB Math Tutoring Center; ran outreach campaigns.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Hassan El Bouz — helbouz@ethz.ch
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
