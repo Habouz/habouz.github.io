@@ -6,112 +6,135 @@
   <title>Hassan El Bouz — Home</title>
   <style>
     :root{
+      /* Base (dark) theme */
       --bg:#0b0d12; --card:#121621; --text:#e9eef7;
       --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --amber:#f6c76f;
-      --line:#1f2430; --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
+      --line:#1f2430; --muted:#c3c8d3;
+      --shadow:0 8px 25px rgba(0,0,0,.25);
 
+      /* Sidebar vars */
       --sb-collapsed: 80px;
       --sb-expanded: 220px;
       --sb-width: var(--sb-collapsed);
+      --sb-bg:#10141d;
+      --sb-item-bg:#0f1320;
+      --sb-item-border:#1c2331;
+
+      --radius:18px;
     }
+
+    /* Light mode overrides */
+    :root[data-theme="light"]{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --text:#0b1220;
+      --line:#e5e9f2;
+      --muted:#5b657a;
+      --shadow:0 8px 25px rgba(0,0,0,.08);
+      --sb-bg:#ffffff;
+      --sb-item-bg:#f7f9fd;
+      --sb-item-border:#e6ebf5;
+    }
+
     body.sidebar-open { --sb-width: var(--sb-expanded); }
 
+    /* Layout + background */
     body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
-      color:var(--text); min-height:100vh;
-      display:grid; grid-template-columns: 1fr var(--sb-width);
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      display:grid;
+      grid-template-columns: 1fr var(--sb-width);
       transition:grid-template-columns .22s ease;
       background:
         radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,0.12), transparent),
         radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,0.12), transparent),
         var(--bg);
+      background-attachment: fixed;
+    }
+    :root[data-theme="light"] body{
+      background:
+        radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,0.10), transparent),
+        radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,0.10), transparent),
+        linear-gradient(to bottom, #f6f8fb 0%, #eef2f8 100%);
     }
 
-    /* Main */
-    .main{ display:flex; flex-direction:column; align-items:center; padding:40px 20px; text-align:center; }
+    /* Main column */
+    .main{
+      display:flex; flex-direction:column; align-items:center;
+      padding:40px 20px; text-align:center;
+    }
     header{ max-width:760px; margin-bottom:36px; }
     header h1{ font-size:34px; margin:0 0 10px; }
-    header p{ font-size:18px; color:#c3c8d3; margin:0; }
+    header p{ font-size:18px; color:var(--muted); margin:0; }
 
-    /* Cards grid (now 4 columns on wide screens) */
+    /* Theme toggle button (absolute corner) */
+    .theme-btn{
+      position:fixed; top:16px; left:16px; z-index:1000;
+      background:var(--card); color:var(--text);
+      border:1px solid var(--line); box-shadow:var(--shadow);
+      border-radius:999px; padding:8px 12px;
+      display:flex; align-items:center; gap:8px; cursor:pointer;
+    }
+
+    /* Cards grid */
     .grid{
       display:grid; gap:24px; width:100%; max-width:1100px;
       grid-template-columns: repeat(4, minmax(220px, 1fr));
       margin-bottom:40px;
     }
-    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(3, minmax(220px,1fr)); } }
-    @media (max-width: 900px){ .grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); } }
-    @media (max-width: 520px){ .grid{ grid-template-columns: 1fr; } }
+    @media (max-width:1100px){ .grid{ grid-template-columns: repeat(3, minmax(220px,1fr)); } }
+    @media (max-width:900px){ .grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); } }
+    @media (max-width:520px){ .grid{ grid-template-columns: 1fr; } }
 
     .card{
-      background:var(--card); border:1px solid var(--line); border-radius:var(--br);
+      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
       padding:44px 28px; text-align:center; font-size:26px; font-weight:700; color:var(--text);
       text-decoration:none; box-shadow:var(--shadow);
       transition:transform .15s ease, box-shadow .15s ease;
     }
     .card:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.35); }
-
-    /* Colored labels */
     .projects span{ color:var(--brand); }
     .cv span{ color:var(--accent); }
     .pubs span{ color:var(--violet); }
     .talks span{ color:var(--amber); }
-
-    /* Small subtitle inside cards (for “Coming soon”) */
-    .card small{
-      display:block;
-      margin-top:10px;
-      font-size:14px;
-      font-weight:500;
-      color:#c3c8d3;
-      opacity:.85;
-    }
+    .card small{ display:block; margin-top:10px; font-size:14px; font-weight:500; color:var(--muted); opacity:.9; }
 
     /* Video section */
     .video-section{
-      width:100%; max-width:860px;
-      background:var(--card);
-      border-radius:var(--br);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      padding:20px;
+      width:100%; max-width:860px; background:var(--card);
+      border-radius:var(--radius); border:1px solid var(--line);
+      box-shadow:var(--shadow); padding:20px; text-align:left;
     }
-    .video-section h2{
-      margin:0 0 16px;
-      font-size:20px;
-      color:var(--brand);
-      text-align:left;
-    }
+    .video-section h2{ margin:0 0 16px; font-size:20px; color:var(--brand); }
     .video-placeholder{
-      position:relative;
-      padding-top:56.25%; /* 16:9 aspect ratio */
-      background:#0f1320;
-      border-radius:var(--br);
-      overflow:hidden;
+      position:relative; padding-top:56.25%;
+      background:#0f1320; border-radius:var(--radius); overflow:hidden;
     }
+    :root[data-theme="light"] .video-placeholder{ background:#eef3ff; }
     .video-placeholder iframe,
     .video-placeholder video{
-      position:absolute; top:0; left:0;
-      width:100%; height:100%;
-      border:0;
+      position:absolute; inset:0; width:100%; height:100%; border:0;
     }
 
     /* Sidebar */
     .sidebar{
-      position:relative; background:#10141d; border-left:1px solid var(--line);
+      position:relative; background:var(--sb-bg); border-left:1px solid var(--line);
       overflow:hidden; transition:width .22s ease, padding .22s ease; width:var(--sb-width);
       padding:12px; display:flex; align-items:flex-start; justify-content:center;
     }
     body.sidebar-open .sidebar{ padding:16px; }
 
     .sidebar-inner{ width:100%; }
-    .sb-title{ margin:0 0 10px; font-size:16px; color:#cfd6e3; padding-left:12px; opacity:0; transition:opacity .18s ease; }
+    .sb-title{ margin:0 0 10px; font-size:16px; color:var(--muted); padding-left:12px; opacity:0; transition:opacity .18s ease; }
     body.sidebar-open .sb-title{ opacity:1; }
 
     .links{ display:flex; flex-direction:column; gap:12px; }
     .item{
       display:flex; align-items:center; gap:10px;
-      padding:10px; border-radius:12px; background:#0f1320; border:1px solid #1c2331;
+      padding:10px; border-radius:12px;
+      background:var(--sb-item-bg); border:1px solid var(--sb-item-border);
     }
     .icon{ width:22px; height:22px; min-width:22px; display:grid; place-items:center; }
     .label{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:15px; max-width:0; opacity:0; transition:max-width .2s ease, opacity .18s ease; }
@@ -121,10 +144,20 @@
     .item a:hover{ text-decoration:underline; }
 
     .handle{ position:absolute; left:8px; top:50%; transform:translateY(-50%); width:8px; height:38px; border-radius:6px; background:linear-gradient(180deg,#263043,#1c2331); opacity:.5; pointer-events:none; }
+    :root[data-theme="light"] .handle{ background:linear-gradient(180deg,#d8deec,#c9d2e6); }
     body.sidebar-open .handle{ opacity:.25; }
+
+    .edge-sensor{ position:fixed; top:0; right:0; width:32px; height:100vh; z-index:50; background:transparent; }
+    @media (max-width:700px){ .edge-sensor{ display:none; } }
   </style>
 </head>
 <body>
+  <!-- Theme toggle pinned to top-left corner -->
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <span id="themeIcon" aria-hidden="true">🌙</span>
+    <span id="themeLabel">Dark</span>
+  </button>
+
   <div class="main">
     <header>
       <h1>Hey there 👋</h1>
@@ -139,7 +172,6 @@
       <div class="card talks"><span>Talks</span><small>Coming soon</small></div>
     </div>
 
-    <!-- Video Placeholder -->
     <section class="video-section">
       <h2>Latest Work</h2>
       <div class="video-placeholder">
@@ -155,13 +187,13 @@
       <div class="links">
         <div class="item">
           <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e9eef7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><path d="m22 8-10 6L2 8"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6b7280" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><path d="m22 8-10 6L2 8"/></svg>
           </span>
           <a class="label" href="mailto:helbouz@ethz.ch">Email</a>
         </div>
         <div class="item">
           <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="#e9eef7"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.84 2.81 1.31 3.5 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.47 11.47 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.67 1.65.26 2.87.13 3.17.77.84 1.23 1.9 1.23 3.22 0 4.62-2.8 5.64-5.47 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.84 2.81 1.31 3.5 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.47 11.47 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.67 1.65.26 2.87.13 3.17.77.84 1.23 1.9 1.23 3.22 0 4.62-2.8 5.64-5.47 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
           </span>
           <a class="label" href="https://github.com/Habouz" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -175,31 +207,59 @@
     </div>
   </aside>
 
+  <div class="edge-sensor" id="edgeSensor" aria-hidden="true"></div>
+
   <script>
+    // THEME toggle
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+
+      const saved = localStorage.getItem('theme');
+      if (saved) root.setAttribute('data-theme', saved);
+      else {
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        root.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+      }
+
+      function syncBtn(){
+        const mode = root.getAttribute('data-theme');
+        if(mode === 'light'){ icon.textContent = '☀️'; label.textContent = 'Light'; }
+        else { icon.textContent = '🌙'; label.textContent = 'Dark'; }
+      }
+      syncBtn();
+
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        syncBtn();
+      });
+    })();
+
+    // SIDEBAR
     (function () {
       const body = document.body;
       const sidebar = document.getElementById('sidebar');
+      const edge = document.getElementById('edgeSensor');
       let open = false;
 
-      window.addEventListener('mousemove', (e) => {
-        const threshold = 40;
-        const distFromRight = window.innerWidth - e.clientX;
-        const shouldOpen = distFromRight <= threshold || sidebar.matches(':hover');
-        if (shouldOpen !== open) {
-          open = shouldOpen;
-          body.classList.toggle('sidebar-open', shouldOpen);
-        }
-      });
+      function setOpen(state){
+        open = state;
+        body.classList.toggle('sidebar-open', state);
+      }
 
-      sidebar.addEventListener('click', () => {
-        open = !open;
-        body.classList.toggle('sidebar-open', open);
-      });
+      edge.addEventListener('mouseenter', () => setOpen(true));
+      sidebar.addEventListener('mouseenter', () => setOpen(true));
+      sidebar.addEventListener('mouseleave', () => setOpen(false));
+      sidebar.addEventListener('click', () => setOpen(!open));
 
       const mq = window.matchMedia('(max-width: 700px)');
-      mq.addEventListener('change', () => { open = false; body.classList.remove('sidebar-open'); });
+      mq.addEventListener('change', () => { setOpen(false); });
+      window.addEventListener('scroll', () => { if (!sidebar.matches(':hover')) setOpen(false); }, { passive:true });
     })();
   </script>
 </body>
 </html>
-

@@ -6,19 +6,53 @@
   <title>Hassan El Bouz — Projects</title>
   <style>
     :root{
+      /* Default = DARK THEME */
       --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
       --line:#1f2430; --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --rose:#fb7185;
       --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
+
+      --chip-bg:#121621; --chip-border:#1f2430;
+      --search-bg:#121621; --search-border:#1f2430;
+
+      --pill-bg:#1a1f2c; --pill-border:#263043; --pill-text:#cfd6e3;
+
+      --btn-bg:#182032; --btn-border:#253149; --btn-text:#dbe6ff;
+
+      --bubble-bg:#0f1320; --bubble-border:#1c2331; --bubble-text:#cfd6e3;
     }
+
+    /* LIGHT THEME OVERRIDES */
+    :root[data-theme="light"]{
+      --bg:#f6f8fb; --card:#ffffff; --text:#0b1220; --muted:#5b657a;
+      --line:#e5e9f2; --brand:#2563eb; --accent:#16a34a; --violet:#7c3aed; --rose:#dc5a6a;
+      --shadow:0 8px 25px rgba(0,0,0,.08);
+
+      --chip-bg:#ffffff; --chip-border:#e5e9f2;
+      --search-bg:#ffffff; --search-border:#e5e9f2;
+
+      --pill-bg:#eef2ff; --pill-border:#dbe2ff; --pill-text:#27356b;
+
+      --btn-bg:#eef2ff; --btn-border:#dbe2ff; --btn-text:#1e2a5a;
+
+      --bubble-bg:#f7f9fd; --bubble-border:#e6ebf5; --bubble-text:#21304f;
+    }
+
     *{box-sizing:border-box}
+
     body{
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; color:var(--text);
       min-height:100vh; line-height:1.65;
       background:
-        radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,.12), transparent),
-        radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,.12), transparent),
-        linear-gradient(to bottom, #0b0d12 0%, #11161f 100%);
+        radial-gradient(800px 400px at 70% 0%, color-mix(in srgb, var(--brand) 18%, transparent), transparent),
+        radial-gradient(600px 300px at 20% 80%, color-mix(in srgb, var(--accent) 18%, transparent), transparent),
+        linear-gradient(to bottom, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, #11161f) 100%);
       background-attachment: fixed;
+    }
+    :root[data-theme="light"] body{
+      background:
+        radial-gradient(800px 400px at 70% 0%, rgba(37,99,235,.10), transparent),
+        radial-gradient(600px 300px at 20% 80%, rgba(22,163,74,.10), transparent),
+        linear-gradient(to bottom, #f6f8fb 0%, #eef2f8 100%);
     }
 
     a{color:var(--brand); text-decoration:none}
@@ -35,21 +69,31 @@
 
     .nav{ display:flex; gap:10px; flex-wrap:wrap }
     .chip{
-      padding:8px 12px; border-radius:999px; background:var(--card); border:1px solid var(--line);
+      padding:8px 12px; border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-border);
       color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:transform .15s ease;
     }
     .chip:hover{ transform:translateY(-2px) }
 
+    /* Theme toggle (top-left corner, pinned) */
+    .theme-btn{
+      position:fixed; top:16px; left:16px; z-index:1000;
+      background:var(--card); color:var(--text);
+      border:1px solid var(--line); box-shadow:var(--shadow);
+      border-radius:999px; padding:8px 12px;
+      display:flex; align-items:center; gap:8px; cursor:pointer;
+    }
+
     .tools{ display:flex; gap:12px; flex-wrap:wrap; margin:22px 0; }
     .search{
-      flex:1; min-width:240px; background:var(--card); border:1px solid var(--line);
+      flex:1; min-width:240px; background:var(--search-bg); border:1px solid var(--search-border);
       border-radius:999px; padding:10px 14px; color:var(--text); outline:none;
     }
     .tag{
       padding:8px 12px; border-radius:999px; background:#151a25;
       border:1px solid var(--line); color:#cfd6e3; cursor:pointer; font-size:14px;
     }
-    .tag[data-active="true"]{ border-color:#2a3550; filter:brightness(1.08) }
+    :root[data-theme="light"] .tag{ background:#f3f6ff; color:#2b3b6a; }
+    .tag[data-active="true"]{ border-color:color-mix(in srgb, var(--brand) 30%, var(--search-border)); filter:brightness(1.05) }
 
     .grid{
       display:grid; gap:18px;
@@ -62,26 +106,29 @@
     }
     .titleline{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
     .card h2{ margin:0; font-size:20px; color:var(--accent) }
+    :root[data-theme="light"] .card h2{ color:#16a34a; }
     .meta{ color:var(--muted); font-size:14px }
     .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px }
     .pill{
       display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px;
-      background:#1a1f2c; border:1px solid #263043; color:#cfd6e3;
+      background:var(--pill-bg); border:1px solid var(--pill-border); color:var(--pill-text);
     }
+    :root[data-theme="dark"] .pill{ background:#1a1f2c; border-color:#263043; color:#cfd6e3; }
     .desc{ color:#d7deea; margin-top:4px }
+    :root[data-theme="light"] .desc{ color:#22304d }
 
     .links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; align-items:center }
     .btn{
       display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; text-decoration:none;
-      background:#182032; border:1px solid #253149; color:#dbe6ff; font-size:14px; transition:filter .15s ease;
+      background:var(--btn-bg); border:1px solid var(--btn-border); color:var(--btn-text); font-size:14px; transition:filter .15s ease;
     }
-    .btn:hover{ filter:brightness(1.08) }
+    .btn:hover{ filter:brightness(1.05) }
     .btn.muted{ color:#a6b0c3; border-style:dashed; opacity:.8; cursor:not-allowed }
 
     /* Video bubble style */
     .bubble{
       display:inline-flex; align-items:center; gap:8px; padding:6px 12px;
-      border-radius:999px; background:#0f1320; border:1px solid #1c2331; color:#cfd6e3; font-size:14px;
+      border-radius:999px; background:var(--bubble-bg); border:1px solid var(--bubble-border); color:var(--bubble-text); font-size:14px;
     }
     .bubble svg{ opacity:.9 }
 
@@ -89,12 +136,19 @@
       display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px;
       background:#2a1f27; border:1px solid #3a2933; color:#f4b4c0;
     }
+    :root[data-theme="light"] .status{ background:#fff3f5; border-color:#ffdbe2; color:#a83c4b; }
     .status span{ font-size:10px; opacity:.9 }
 
     footer{ margin-top:28px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; text-align:center }
   </style>
 </head>
 <body>
+  <!-- Theme toggle -->
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <span id="themeIcon" aria-hidden="true">🌙</span>
+    <span id="themeLabel">Dark</span>
+  </button>
+
   <div class="wrap">
     <header>
       <div class="title">
@@ -138,7 +192,7 @@
         <div class="links">
           <a class="btn" href="https://doi.org/10.1002/rsa.3240070205" target="_blank" rel="noopener">Based on this paper</a>
           <a class="bubble" href="graph-coloring-demo.mp4" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="#e9eef7" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             Video demo
           </a>
           <span class="btn muted" title="Repo private for now">Code (private)</span>
@@ -178,42 +232,69 @@
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Search + filters
-    const q = document.getElementById('search');
-    const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
-    const clear = document.getElementById('clearFilters');
-    const cards = Array.from(document.querySelectorAll('#projGrid .card'));
-    let activeTags = new Set();
+    // THEME: default to user's saved choice, fall back to dark for this page
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
 
-    function applyFilters(){
-      const text = (q.value || '').toLowerCase().trim();
-      cards.forEach(el=>{
-        const tgs = (el.dataset.tags || '').toLowerCase();
-        const kw = (el.dataset.keywords || '').toLowerCase();
-        const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
-        const matchesTags = activeTags.size===0 || [...activeTags].some(t => tgs.includes(t));
-        el.style.display = (matchesText && matchesTags) ? '' : 'none';
+      const saved = localStorage.getItem('theme');
+      const start = saved || 'dark';
+      root.setAttribute('data-theme', start);
+      function syncBtn(){
+        const mode = root.getAttribute('data-theme');
+        if(mode === 'light'){ icon.textContent = '☀️'; label.textContent = 'Light'; }
+        else { icon.textContent = '🌙'; label.textContent = 'Dark'; }
+      }
+      syncBtn();
+
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        syncBtn();
       });
-    }
+    })();
 
-    q.addEventListener('input', applyFilters);
+    // Search + filters
+    (function(){
+      const q = document.getElementById('search');
+      const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
+      const clear = document.getElementById('clearFilters');
+      const cards = Array.from(document.querySelectorAll('#projGrid .card'));
+      let activeTags = new Set();
 
-    tags.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const tag = btn.dataset.tag;
-        const on = btn.getAttribute('data-active') === 'true';
-        btn.setAttribute('data-active', String(!on));
-        if(on) activeTags.delete(tag); else activeTags.add(tag);
+      function applyFilters(){
+        const text = (q.value || '').toLowerCase().trim();
+        cards.forEach(el=>{
+          const tgs = (el.dataset.tags || '').toLowerCase();
+          const kw = (el.dataset.keywords || '').toLowerCase();
+          const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
+          const matchesTags = activeTags.size===0 || [...activeTags].some(t => tgs.includes(t));
+          el.style.display = (matchesText && matchesTags) ? '' : 'none';
+        });
+      }
+
+      q.addEventListener('input', applyFilters);
+
+      tags.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const tag = btn.dataset.tag;
+          const on = btn.getAttribute('data-active') === 'true';
+          btn.setAttribute('data-active', String(!on));
+          if(on) activeTags.delete(tag); else activeTags.add(tag);
+          applyFilters();
+        });
+      });
+
+      clear.addEventListener('click', ()=>{
+        activeTags.clear();
+        tags.forEach(b=>b.setAttribute('data-active','false'));
+        q.value = '';
         applyFilters();
       });
-    });
-
-    clear.addEventListener('click', ()=>{
-      activeTags.clear();
-      tags.forEach(b=>b.setAttribute('data-active','false'));
-      q.value = '';
-      applyFilters();
-    });
+    })();
   </script>
 </body>
 </html>

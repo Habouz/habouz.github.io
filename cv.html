@@ -6,33 +6,80 @@
   <title>Hassan El Bouz — CV</title>
   <style>
     :root{
+      /* Default = DARK THEME */
       --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
       --line:#1f2430; --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --rose:#fb7185; --br:18px;
+      --shadow:0 8px 25px rgba(0,0,0,.25);
+
+      --chip-bg:linear-gradient(135deg,var(--card),#1a1f2c);
+      --chip-border:var(--line);
     }
+    /* LIGHT THEME OVERRIDES */
+    :root[data-theme="light"]{
+      --bg:#f6f8fb; --card:#ffffff; --text:#0b1220; --muted:#5b657a;
+      --line:#e5e9f2; --brand:#2563eb; --accent:#16a34a; --violet:#7c3aed; --rose:#dc5a6a;
+      --shadow:0 8px 25px rgba(0,0,0,.08);
+
+      --chip-bg:#ffffff;
+      --chip-border:#e5e9f2;
+    }
+
     *{box-sizing:border-box}
     body{
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; color:var(--text);
       background:
-        radial-gradient(900px 420px at 70% -10%, rgba(78,168,255,.12), transparent),
-        radial-gradient(620px 320px at 15% 85%, rgba(126,231,135,.10), transparent),
-        radial-gradient(500px 500px at 90% 90%, rgba(167,139,250,.10), transparent),
+        radial-gradient(900px 420px at 70% -10%, color-mix(in srgb, var(--brand) 18%, transparent), transparent),
+        radial-gradient(620px 320px at 15% 85%, color-mix(in srgb, var(--accent) 14%, transparent), transparent),
+        radial-gradient(500px 500px at 90% 90%, color-mix(in srgb, var(--violet) 14%, transparent), transparent),
         var(--bg);
       background-attachment: fixed;
       line-height:1.75;
     }
+    :root[data-theme="light"] body{
+      background:
+        radial-gradient(900px 420px at 70% -10%, rgba(37,99,235,.10), transparent),
+        radial-gradient(620px 320px at 15% 85%, rgba(22,163,74,.08), transparent),
+        radial-gradient(500px 500px at 90% 90%, rgba(124,58,237,.08), transparent),
+        linear-gradient(to bottom, #f6f8fb 0%, #eef2f8 100%);
+    }
+
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
+
+    /* Theme toggle (top-left corner, pinned) */
+    .theme-btn{
+      position:fixed; top:16px; left:16px; z-index:1000;
+      background:var(--card); color:var(--text);
+      border:1px solid var(--line); box-shadow:var(--shadow);
+      border-radius:999px; padding:8px 12px;
+      display:flex; align-items:center; gap:8px; cursor:pointer;
+    }
+
     .wrap{max-width:1400px;margin:0 auto;padding:28px}
 
-    header{padding:18px 0 8px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
-    .title h1{margin:0; font-size:34px; background:linear-gradient(135deg,var(--brand),var(--violet)); -webkit-background-clip:text; color:transparent}
+    header{
+      padding:18px 0 8px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px
+    }
+    .title h1{
+      margin:0; font-size:34px;
+      background:linear-gradient(135deg,var(--brand),var(--violet)); -webkit-background-clip:text; color:transparent
+    }
     .title .tag{margin-top:6px; color:var(--muted)}
     .nav{display:flex; gap:10px; flex-wrap:wrap}
-    .chip{padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:linear-gradient(135deg,var(--card),#1a1f2c)}
+    .chip{
+      padding:8px 12px; border:1px solid var(--chip-border); border-radius:999px;
+      background:var(--chip-bg); box-shadow:var(--shadow);
+    }
 
     .section{margin:28px 0}
-    .section h2{font-size:20px; margin:0 0 12px; background:linear-gradient(135deg,var(--accent),var(--rose)); -webkit-background-clip:text; color:transparent}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--br); padding:20px; box-shadow:0 8px 25px rgba(0,0,0,.25)}
+    .section h2{
+      font-size:20px; margin:0 0 12px;
+      background:linear-gradient(135deg,var(--accent),var(--rose)); -webkit-background-clip:text; color:transparent
+    }
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:var(--br);
+      padding:20px; box-shadow:var(--shadow)
+    }
     .stack{display:flex; flex-direction:column; gap:16px}
 
     ul{margin:6px 0 0 20px}
@@ -44,15 +91,31 @@
     .divider{height:1px; background:var(--line); margin:10px 0}
 
     .pills{display:flex; gap:8px; flex-wrap:wrap}
-    .pill{display:inline-flex; padding:4px 8px; border:1px solid #263043; border-radius:999px; color:var(--muted); font-size:12px; background:linear-gradient(135deg,#1a1f2c,#171b27)}
+    .pill{
+      display:inline-flex; padding:4px 8px; border:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      border-radius:999px; color:var(--muted); font-size:12px;
+      background:linear-gradient(135deg,color-mix(in srgb, var(--card) 80%, #1a1f2c), color-mix(in srgb, var(--card) 80%, #171b27));
+    }
+    :root[data-theme="light"] .pill{
+      background:#f7f9fd; border-color:#e6ebf5; color:#465166;
+    }
 
     h3{margin:0 0 2px; font-size:16px}
     .sub{color:var(--muted); font-size:14px}
 
-    footer{margin-top:40px; padding:20px; text-align:center; font-size:14px; color:var(--muted); border-top:1px solid var(--line)}
+    footer{
+      margin-top:40px; padding:20px; text-align:center; font-size:14px; color:var(--muted);
+      border-top:1px solid var(--line)
+    }
   </style>
 </head>
 <body>
+  <!-- Theme toggle -->
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <span id="themeIcon" aria-hidden="true">🌙</span>
+    <span id="themeLabel">Dark</span>
+  </button>
+
   <div class="wrap">
     <header>
       <div class="title">
@@ -101,34 +164,34 @@
             </div>
             <div class="divider"></div>
             <div>
-              <h3>Spatio‑Temporal Epidemiology with Memory</h3>
+              <h3>Spatio-Temporal Epidemiology with Memory</h3>
               <div class="sub">AUB • Supervisor: Prof. Fatima Mroueh • Jun 2024 – Present</div>
-              <ul><li>Integro‑differential epidemic model with memory; numerical solvers; manuscript submitted.</li></ul>
+              <ul><li>Integro-differential epidemic model with memory; numerical solvers; manuscript submitted.</li></ul>
             </div>
             <div class="divider"></div>
             <div>
-              <h3>Path‑Integral Entropy Loss for Sparse Autoencoders</h3>
+              <h3>Path-Integral Entropy Loss for Sparse Autoencoders</h3>
               <div class="sub">AUB • Supervisor: Dr. Sara Najem • May 2025 – Present</div>
-              <ul><li>Entropy‑based sparsity in PyTorch autoencoders; pruning inactive neurons.</li></ul>
+              <ul><li>Entropy-based sparsity in PyTorch autoencoders; pruning inactive neurons.</li></ul>
             </div>
             <div class="divider"></div>
             <div>
               <h3>Distributed Quantum Systems</h3>
               <div class="sub">AUB • Supervisor: Prof. Mahdi Chehimi • Nov 2024 – Jul 2025</div>
-              <ul><li>Teleported two‑qubit gates; compared resource counts vs direct compilation.</li></ul>
+              <ul><li>Teleported two-qubit gates; compared resource counts vs direct compilation.</li></ul>
             </div>
           </div>
         </section>
 
         <section class="section card">
           <h2>Selected Projects</h2>
-          <h3>Graph‑Coloring via Markov Chains</h3>
+          <h3>Graph-Coloring via Markov Chains</h3>
           <div class="sub">Python • MCMC • Complexity — <a href="projects.html">details</a></div>
-          <ul><li>Polynomial‑time estimator for k‑colorings on sparse graphs using single‑site dynamics and conflict‑aware resampling.</li></ul>
+          <ul><li>Polynomial-time estimator for k-colorings on sparse graphs using single-site dynamics and conflict-aware resampling.</li></ul>
           <div class="divider"></div>
           <h3>Dynamic Structure Autoencoder (Capstone)</h3>
           <div class="sub">Python • PyTorch • 2025</div>
-          <ul><li>Model adapts hidden/latent size during training; entropy‑inspired sparsity yields efficient representations.</li></ul>
+          <ul><li>Model adapts hidden/latent size during training; entropy-inspired sparsity yields efficient representations.</li></ul>
         </section>
       </main>
 
@@ -177,7 +240,7 @@
         <section class="section card">
           <h2>Seminars & Teaching</h2>
           <ul>
-            <li>Seminars: chains on pseudoconvex hypersurfaces; spatio‑temporal epidemic models; Jordan forms.</li>
+            <li>Seminars: chains on pseudoconvex hypersurfaces; spatio-temporal epidemic models; Jordan forms.</li>
             <li>Tutored undergrads in AUB Math Tutoring Center; ran outreach campaigns.</li>
           </ul>
         </section>
@@ -188,6 +251,46 @@
       © <span id="y"></span> Hassan El Bouz — helbouz@ethz.ch
     </footer>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent=new Date().getFullYear();
+
+    // THEME: read saved choice, default to dark for CV
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+
+      // Build button icons if not present (keeps HTML tidy if you paste elsewhere)
+      if(!icon || !label){
+        const i = document.createElement('span'); i.id='themeIcon'; i.setAttribute('aria-hidden','true'); i.textContent='🌙';
+        const l = document.createElement('span'); l.id='themeLabel'; l.textContent='Dark';
+        btn.appendChild(i); btn.appendChild(l);
+      }
+
+      const ic = document.getElementById('themeIcon');
+      const lb = document.getElementById('themeLabel');
+
+      const saved = localStorage.getItem('theme');
+      const start = saved || 'dark';
+      root.setAttribute('data-theme', start);
+
+      function syncBtn(){
+        const mode = root.getAttribute('data-theme');
+        if(mode === 'light'){ ic.textContent = '☀️'; lb.textContent = 'Light'; }
+        else { ic.textContent = '🌙'; lb.textContent = 'Dark'; }
+      }
+      syncBtn();
+
+      btn.addEventListener('click', ()=>{
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        syncBtn();
+      });
+    })();
+  </script>
 </body>
 </html>

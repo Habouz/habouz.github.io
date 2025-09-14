@@ -6,23 +6,54 @@
   <title>Hassan El Bouz — Publications</title>
   <style>
     :root{
+      /* Default = LIGHT THEME */
+      --bg:#f6f8fb; --card:#ffffff; --text:#0b1220; --muted:#5b657a;
+      --line:#e5e9f2; --brand:#2563eb; --violet:#7c3aed;
+      --br:18px; --shadow:0 8px 25px rgba(0,0,0,.08);
+
+      --chip-bg:#ffffff; --chip-border:#e5e9f2;
+      --search-bg:#ffffff; --search-border:#e5e9f2;
+
+      --pill-bg:#eef2ff; --pill-border:#dbe2ff; --pill-text:#27356b;
+
+      --details-bg:#f7f9fd; --details-border:#e6ebf5; --details-text:#21304f;
+
+      --code-bg:#0f172a; --code-border:#0b1220; --code-text:#e2e8f0;
+    }
+
+    /* DARK THEME OVERRIDES */
+    :root[data-theme="dark"]{
       --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
       --line:#1f2430; --brand:#4ea8ff; --violet:#a78bfa;
-      --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
+      --shadow:0 8px 25px rgba(0,0,0,.25);
+
+      --chip-bg:#121621; --chip-border:#1f2430;
+      --search-bg:#121621; --search-border:#1f2430;
+
+      --pill-bg:#1a1f2c; --pill-border:#263043; --pill-text:#cfd6e3;
+
+      --details-bg:#0f1320; --details-border:#1c2331; --details-text:#cfd6e3;
+
+      --code-bg:#0b0f19; --code-border:#1a2233; --code-text:#cfe3ff;
     }
+
     *{box-sizing:border-box}
 
     body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
-      color:var(--text);
-      min-height:100vh;
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      color:var(--text); min-height:100vh; line-height:1.65;
+      background:
+        radial-gradient(800px 400px at 70% 0%, color-mix(in srgb, var(--brand) 18%, transparent), transparent),
+        radial-gradient(600px 300px at 20% 80%, color-mix(in srgb, var(--violet) 18%, transparent), transparent),
+        linear-gradient(to bottom, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, #eef2f8) 100%);
+      background-attachment: fixed;
+    }
+    /* Better dark background tweak */
+    :root[data-theme="dark"] body{
       background:
         radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,.12), transparent),
         radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,.12), transparent),
         linear-gradient(to bottom, #0b0d12 0%, #11161f 100%);
-      background-attachment: fixed;
-      line-height:1.65;
     }
 
     a{color:var(--brand); text-decoration:none}
@@ -42,25 +73,33 @@
 
     .nav{ display:flex; gap:10px; flex-wrap:wrap }
     .chip{
-      padding:8px 12px; border-radius:999px; background:var(--card);
-      border:1px solid var(--line); color:var(--text); box-shadow:var(--shadow);
+      padding:8px 12px; border-radius:999px; background:var(--chip-bg);
+      border:1px solid var(--chip-border); color:var(--text); box-shadow:var(--shadow);
       text-decoration:none; transition:transform .15s ease;
     }
     .chip:hover{ transform:translateY(-2px) }
 
-    /* Tools */
-    .tools{
-      display:flex; gap:12px; flex-wrap:wrap; margin:22px 0;
+    /* Theme toggle fixed at top-left of the viewport */
+    .theme-btn{
+      position:fixed; top:16px; left:16px; z-index:1000;
+      background:var(--card); color:var(--text);
+      border:1px solid var(--line); box-shadow:var(--shadow);
+      border-radius:999px; padding:8px 12px;
+      display:flex; align-items:center; gap:8px; cursor:pointer;
     }
+
+    /* Tools */
+    .tools{ display:flex; gap:12px; flex-wrap:wrap; margin:22px 0; }
     .search{
-      flex:1; min-width:220px; background:var(--card); border:1px solid var(--line);
+      flex:1; min-width:220px; background:var(--search-bg); border:1px solid var(--search-border);
       border-radius:999px; padding:10px 14px; color:var(--text); outline:none;
     }
     .tag{
-      padding:8px 12px; border-radius:999px; background:#151a25;
-      border:1px solid var(--line); color:#cfd6e3; cursor:pointer; font-size:14px;
+      padding:8px 12px; border-radius:999px; background:color-mix(in srgb, var(--brand) 12%, #fff);
+      border:1px solid var(--search-border); color:#2b3b6a; cursor:pointer; font-size:14px;
     }
-    .tag[data-active="true"]{ border-color:#2a3550; filter:brightness(1.08) }
+    :root[data-theme="dark"] .tag{ background:#151a25; color:#cfd6e3; }
+    .tag[data-active="true"]{ border-color:color-mix(in srgb, var(--brand) 30%, var(--search-border)); filter:brightness(1.05) }
 
     .list{ display:flex; flex-direction:column; gap:16px }
 
@@ -68,31 +107,36 @@
       background:var(--card); border:1px solid var(--line); border-radius:var(--br);
       padding:18px; box-shadow:var(--shadow);
     }
-    .card h2{ margin:0 0 6px; font-size:20px; color:var(--violet) }
+    .card h2{ margin:0 0 6px; font-size:20px; color:color-mix(in srgb, var(--violet) 85%, #000) }
+    :root[data-theme="dark"] .card h2{ color:var(--violet); }
     .meta{ color:var(--muted); font-size:14px; margin-top:4px }
     .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
     .pill{
       display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px;
-      background:#1a1f2c; border:1px solid #263043; color:#cfd6e3;
+      background:var(--pill-bg); border:1px solid var(--pill-border); color:var(--pill-text);
     }
 
     details{
-      margin-top:12px; background:#0f1320; border:1px solid #1c2331;
-      border-radius:12px; padding:10px 12px
+      margin-top:12px; background:var(--details-bg); border:1px solid var(--details-border);
+      border-radius:12px; padding:10px 12px; color:var(--details-text);
     }
-    summary{ cursor:pointer; color:#cfd6e3; font-weight:600 }
+    summary{ cursor:pointer; font-weight:600 }
+
     pre{
       margin:10px 0 0; padding:12px; overflow:auto; border-radius:10px;
-      background:#0b0f19; border:1px solid #1a2233; color:#cfe3ff; font-size:13px;
+      background:var(--code-bg); border:1px solid var(--code-border); color:var(--code-text); font-size:13px;
     }
 
     .links{ margin-top:12px }
     .btn{
       display:inline-block; padding:8px 12px; border-radius:12px; text-decoration:none;
-      background:#182032; border:1px solid #253149; color:#dbe6ff; font-size:14px;
-      transition:filter .15s ease;
+      background:#eef2ff; border:1px solid #dbe2ff; color:#1e2a5a; font-size:14px;
+      transition:filter .15s ease, transform .15s ease;
     }
-    .btn:hover{ filter:brightness(1.08) }
+    .btn:hover{ filter:brightness(1.03); transform:translateY(-1px) }
+    :root[data-theme="dark"] .btn{
+      background:#182032; border-color:#253149; color:#dbe6ff;
+    }
 
     footer{
       margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
@@ -101,6 +145,12 @@
   </style>
 </head>
 <body>
+  <!-- Theme toggle -->
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <span id="themeIcon" aria-hidden="true">☀️</span>
+    <span id="themeLabel">Light</span>
+  </button>
+
   <div class="wrap">
     <header>
       <div class="title">
@@ -114,7 +164,7 @@
       </nav>
     </header>
 
-    <!-- Search + filters -->
+    <!-- Tools -->
     <div class="tools">
       <input id="search" class="search" type="search" placeholder="Search by title, author, venue…" />
       <button class="tag" data-tag="journal" data-active="false">Journal</button>
@@ -137,7 +187,7 @@
 
         <details>
           <summary>Abstract</summary>
-          <p style="margin:8px 0 0; color:#cfd6e3">
+          <p style="margin:8px 0 0;">
             We study chains on strongly pseudoconvex hypersurfaces in C<sup>3</sup> via Fefferman’s metric and the
             Chern–Moser normal form, analyzing local behavior and invariants under biholomorphisms.
           </p>
@@ -167,44 +217,74 @@
   </div>
 
   <script>
+    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Search + filters
-    const q = document.getElementById('search');
-    const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
-    const clear = document.getElementById('clearFilters');
-    const items = Array.from(document.querySelectorAll('#pubList .card'));
-    let activeTags = new Set();
+    // Theme: default LIGHT, persist choice
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
 
-    function applyFilters(){
-      const text = (q.value || '').toLowerCase().trim();
-      items.forEach(el=>{
-        const t = el.dataset.type || '';
-        const kw = (el.dataset.keywords || '').toLowerCase();
-        const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
-        const matchesTag = activeTags.size===0 || activeTags.has(t);
-        el.style.display = (matchesText && matchesTag) ? '' : 'none';
-      });
-    }
+      // Read saved or default to light
+      const saved = localStorage.getItem('theme');
+      const start = saved || 'light';
+      root.setAttribute('data-theme', start);
 
-    q.addEventListener('input', applyFilters);
+      function syncBtn(){
+        const mode = root.getAttribute('data-theme');
+        if(mode === 'dark'){ icon.textContent = '🌙'; label.textContent = 'Dark'; }
+        else { icon.textContent = '☀️'; label.textContent = 'Light'; }
+      }
+      syncBtn();
 
-    tags.forEach(btn=>{
       btn.addEventListener('click', ()=>{
-        const tag = btn.dataset.tag;
-        const on = btn.getAttribute('data-active') === 'true';
-        btn.setAttribute('data-active', String(!on));
-        if(on) activeTags.delete(tag); else activeTags.add(tag);
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        syncBtn();
+      });
+    })();
+
+    // Search + filters
+    (function(){
+      const q = document.getElementById('search');
+      const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
+      const clear = document.getElementById('clearFilters');
+      const items = Array.from(document.querySelectorAll('#pubList .card'));
+      let activeTags = new Set();
+
+      function applyFilters(){
+        const text = (q.value || '').toLowerCase().trim();
+        items.forEach(el=>{
+          const t = el.dataset.type || '';
+          const kw = (el.dataset.keywords || '').toLowerCase();
+          const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
+          const matchesTag = activeTags.size===0 || activeTags.has(t);
+          el.style.display = (matchesText && matchesTag) ? '' : 'none';
+        });
+      }
+
+      q.addEventListener('input', applyFilters);
+
+      tags.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const tag = btn.dataset.tag;
+          const on = btn.getAttribute('data-active') === 'true';
+          btn.setAttribute('data-active', String(!on));
+          if(on) activeTags.delete(tag); else activeTags.add(tag);
+          applyFilters();
+        });
+      });
+
+      clear.addEventListener('click', ()=>{
+        activeTags.clear();
+        tags.forEach(b=>b.setAttribute('data-active','false'));
+        q.value = '';
         applyFilters();
       });
-    });
-
-    clear.addEventListener('click', ()=>{
-      activeTags.clear();
-      tags.forEach(b=>b.setAttribute('data-active','false'));
-      q.value = '';
-      applyFilters();
-    });
+    })();
   </script>
 </body>
 </html>
