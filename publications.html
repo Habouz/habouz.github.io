@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hassan El Bouz — Publications</title>
+  <style>
+    :root{
+      --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
+      --line:#1f2430; --brand:#4ea8ff; --violet:#a78bfa;
+      --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      background:
+        radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,.12), transparent),
+        radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,.12), transparent),
+        linear-gradient(to bottom, #0b0d12 0%, #11161f 100%);
+      background-attachment: fixed;
+      line-height:1.65;
+    }
+
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:1000px; margin:0 auto; padding:28px 20px}
+
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;
+    }
+    .title h1{
+      margin:0 0 6px; font-size:32px;
+      background:linear-gradient(135deg,var(--brand),var(--violet));
+      -webkit-background-clip:text; color:transparent;
+    }
+    .subtitle{ color:var(--muted) }
+
+    .nav{ display:flex; gap:10px; flex-wrap:wrap }
+    .chip{
+      padding:8px 12px; border-radius:999px; background:var(--card);
+      border:1px solid var(--line); color:var(--text); box-shadow:var(--shadow);
+      text-decoration:none; transition:transform .15s ease;
+    }
+    .chip:hover{ transform:translateY(-2px) }
+
+    /* Tools */
+    .tools{
+      display:flex; gap:12px; flex-wrap:wrap; margin:22px 0;
+    }
+    .search{
+      flex:1; min-width:220px; background:var(--card); border:1px solid var(--line);
+      border-radius:999px; padding:10px 14px; color:var(--text); outline:none;
+    }
+    .tag{
+      padding:8px 12px; border-radius:999px; background:#151a25;
+      border:1px solid var(--line); color:#cfd6e3; cursor:pointer; font-size:14px;
+    }
+    .tag[data-active="true"]{ border-color:#2a3550; filter:brightness(1.08) }
+
+    .list{ display:flex; flex-direction:column; gap:16px }
+
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:var(--br);
+      padding:18px; box-shadow:var(--shadow);
+    }
+    .card h2{ margin:0 0 6px; font-size:20px; color:var(--violet) }
+    .meta{ color:var(--muted); font-size:14px; margin-top:4px }
+    .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+    .pill{
+      display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px;
+      background:#1a1f2c; border:1px solid #263043; color:#cfd6e3;
+    }
+
+    details{
+      margin-top:12px; background:#0f1320; border:1px solid #1c2331;
+      border-radius:12px; padding:10px 12px
+    }
+    summary{ cursor:pointer; color:#cfd6e3; font-weight:600 }
+    pre{
+      margin:10px 0 0; padding:12px; overflow:auto; border-radius:10px;
+      background:#0b0f19; border:1px solid #1a2233; color:#cfe3ff; font-size:13px;
+    }
+
+    .links{ margin-top:12px }
+    .btn{
+      display:inline-block; padding:8px 12px; border-radius:12px; text-decoration:none;
+      background:#182032; border:1px solid #253149; color:#dbe6ff; font-size:14px;
+      transition:filter .15s ease;
+    }
+    .btn:hover{ filter:brightness(1.08) }
+
+    footer{
+      margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
+      color:var(--muted); font-size:14px; text-align:center
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Publications</h1>
+        <div class="subtitle">Hassan El Bouz • Quantum Engineering • ETH Zurich</div>
+      </div>
+      <nav class="nav">
+        <a class="chip" href="index.html">Home</a>
+        <a class="chip" href="cv.html">CV</a>
+        <a class="chip" href="projects.html">Projects</a>
+      </nav>
+    </header>
+
+    <!-- Search + filters -->
+    <div class="tools">
+      <input id="search" class="search" type="search" placeholder="Search by title, author, venue…" />
+      <button class="tag" data-tag="journal" data-active="false">Journal</button>
+      <button class="tag" id="clearFilters" data-active="false">Clear</button>
+    </div>
+
+    <!-- Publications -->
+    <div id="pubList" class="list">
+      <article class="card" data-type="journal" data-keywords="chains strongly pseudoconvex hypersurfaces c^3 complex analysis fefferman chern moser">
+        <h2>On the local behavior of chains on strongly pseudoconvex hypersurfaces in C<sup>3</sup></h2>
+        <div class="meta">
+          Authors: N. Bakaev, S. Ban, <strong>H. El Bouz</strong>, G. Della Sala, A. Hussein, J. Moussa
+        </div>
+        <div class="meta">Proceedings of the American Mathematical Society (2025)</div>
+        <div class="pills">
+          <span class="pill">Journal</span>
+          <span class="pill">Complex Analysis</span>
+          <span class="pill">Geometry</span>
+        </div>
+
+        <details>
+          <summary>Abstract</summary>
+          <p style="margin:8px 0 0; color:#cfd6e3">
+            We study chains on strongly pseudoconvex hypersurfaces in C<sup>3</sup> via Fefferman’s metric and the
+            Chern–Moser normal form, analyzing local behavior and invariants under biholomorphisms.
+          </p>
+        </details>
+
+        <details>
+          <summary>BibTeX</summary>
+          <pre>@article{ElBouz2025Chains,
+  title   = {On the local behavior of chains on strongly pseudoconvex hypersurfaces in C^3},
+  author  = {Bakaev, N. and Ban, S. and El Bouz, H. and Della Sala, G. and Hussein, A. and Moussa, J.},
+  journal = {Proc. Amer. Math. Soc.},
+  year    = {2025},
+  volume  = {153},
+  number  = {7}
+}</pre>
+        </details>
+
+        <div class="links">
+          <a class="btn" href="https://www.ams.org/journals/proc/2025-153-07/S0002-9939-2025-17225-2/" target="_blank" rel="noopener">Publisher</a>
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Hassan El Bouz · <a href="mailto:helbouz@ethz.ch">helbouz@ethz.ch</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Search + filters
+    const q = document.getElementById('search');
+    const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
+    const clear = document.getElementById('clearFilters');
+    const items = Array.from(document.querySelectorAll('#pubList .card'));
+    let activeTags = new Set();
+
+    function applyFilters(){
+      const text = (q.value || '').toLowerCase().trim();
+      items.forEach(el=>{
+        const t = el.dataset.type || '';
+        const kw = (el.dataset.keywords || '').toLowerCase();
+        const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
+        const matchesTag = activeTags.size===0 || activeTags.has(t);
+        el.style.display = (matchesText && matchesTag) ? '' : 'none';
+      });
+    }
+
+    q.addEventListener('input', applyFilters);
+
+    tags.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const tag = btn.dataset.tag;
+        const on = btn.getAttribute('data-active') === 'true';
+        btn.setAttribute('data-active', String(!on));
+        if(on) activeTags.delete(tag); else activeTags.add(tag);
+        applyFilters();
+      });
+    });
+
+    clear.addEventListener('click', ()=>{
+      activeTags.clear();
+      tags.forEach(b=>b.setAttribute('data-active','false'));
+      q.value = '';
+      applyFilters();
+    });
+  </script>
+</body>
+</html>
