@@ -16,9 +16,24 @@
       background:var(--bg);
       color:var(--text);
       display:flex;
-      justify-content:center;
+      flex-direction:column;
       align-items:center;
       min-height:100vh;
+      padding:40px 20px;
+      text-align:center;
+    }
+    header{
+      max-width:700px;
+      margin-bottom:40px;
+    }
+    header h1{
+      font-size:34px;
+      margin:0 0 10px;
+    }
+    header p{
+      font-size:18px;
+      color:#c3c8d3;
+      margin:0;
     }
     .grid{
       display:grid;
@@ -26,7 +41,6 @@
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       max-width:600px;
       width:100%;
-      padding:28px;
     }
     .card{
       background:var(--card);
@@ -50,6 +64,12 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>Hey there 👋</h1>
+    <p>I’m <strong>Hassan</strong>, a Quantum Engineering student at ETH Zurich.<br>
+       Explore my work and journey below 🚀</p>
+  </header>
+
   <div class="grid">
     <a class="card projects" href="projects.html">Projects</a>
     <a class="card cv" href="cv.html">CV</a>
