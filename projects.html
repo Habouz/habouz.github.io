@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hassan El Bouz — Projects</title>
+  <style>
+    :root{
+      --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#b9c0cd;
+      --line:#1f2430; --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --rose:#fb7185;
+      --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; color:var(--text);
+      min-height:100vh; line-height:1.65;
+      background:
+        radial-gradient(800px 400px at 70% 0%, rgba(78,168,255,.12), transparent),
+        radial-gradient(600px 300px at 20% 80%, rgba(126,231,135,.12), transparent),
+        linear-gradient(to bottom, #0b0d12 0%, #11161f 100%);
+      background-attachment: fixed;
+    }
+
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 20px}
+
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;}
+    .title h1{
+      margin:0 0 6px; font-size:32px;
+      background:linear-gradient(135deg,var(--brand),var(--violet)); -webkit-background-clip:text; color:transparent;
+    }
+    .subtitle{ color:var(--muted) }
+
+    .nav{ display:flex; gap:10px; flex-wrap:wrap }
+    .chip{
+      padding:8px 12px; border-radius:999px; background:var(--card); border:1px solid var(--line);
+      color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:transform .15s ease;
+    }
+    .chip:hover{ transform:translateY(-2px) }
+
+    .tools{ display:flex; gap:12px; flex-wrap:wrap; margin:22px 0; }
+    .search{
+      flex:1; min-width:240px; background:var(--card); border:1px solid var(--line);
+      border-radius:999px; padding:10px 14px; color:var(--text); outline:none;
+    }
+    .tag{
+      padding:8px 12px; border-radius:999px; background:#151a25;
+      border:1px solid var(--line); color:#cfd6e3; cursor:pointer; font-size:14px;
+    }
+    .tag[data-active="true"]{ border-color:#2a3550; filter:brightness(1.08) }
+
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:var(--br); box-shadow:var(--shadow);
+      padding:18px; display:flex; flex-direction:column; gap:10px;
+    }
+    .titleline{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .card h2{ margin:0; font-size:20px; color:var(--accent) }
+    .meta{ color:var(--muted); font-size:14px }
+    .pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px }
+    .pill{
+      display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px;
+      background:#1a1f2c; border:1px solid #263043; color:#cfd6e3;
+    }
+    .desc{ color:#d7deea; margin-top:4px }
+
+    .links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; align-items:center }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; text-decoration:none;
+      background:#182032; border:1px solid #253149; color:#dbe6ff; font-size:14px; transition:filter .15s ease;
+    }
+    .btn:hover{ filter:brightness(1.08) }
+    .btn.muted{ color:#a6b0c3; border-style:dashed; opacity:.8; cursor:not-allowed }
+
+    /* Video bubble style */
+    .bubble{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 12px;
+      border-radius:999px; background:#0f1320; border:1px solid #1c2331; color:#cfd6e3; font-size:14px;
+    }
+    .bubble svg{ opacity:.9 }
+
+    .status{
+      display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px;
+      background:#2a1f27; border:1px solid #3a2933; color:#f4b4c0;
+    }
+    .status span{ font-size:10px; opacity:.9 }
+
+    footer{ margin-top:28px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; text-align:center }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Projects</h1>
+        <div class="subtitle">Explorations in quantum, math, and ML</div>
+      </div>
+      <nav class="nav">
+        <a class="chip" href="index.html">Home</a>
+        <a class="chip" href="cv.html">CV</a>
+        <a class="chip" href="publications.html">Publications</a>
+      </nav>
+    </header>
+
+    <!-- Tools -->
+    <div class="tools">
+      <input id="search" class="search" type="search" placeholder="Search by title, keywords, tech…" />
+      <button class="tag" data-tag="ml" data-active="false">ML</button>
+      <button class="tag" data-tag="quantum" data-active="false">Quantum</button>
+      <button class="tag" data-tag="algorithms" data-active="false">Algorithms</button>
+      <button class="tag" id="clearFilters" data-active="false">Clear</button>
+    </div>
+
+    <div id="projGrid" class="grid">
+
+      <!-- Project 1 -->
+      <article class="card" data-tags="algorithms" data-keywords="graph coloring markov chains mcmc complexity python">
+        <div class="titleline">
+          <h2>Graph-Coloring via Markov Chains</h2>
+          <span class="status"><span>●</span> Private</span>
+        </div>
+        <div class="meta">Algorithmic sampler & estimator for <em>k</em>-colorings on sparse graphs.</div>
+        <div class="pills">
+          <span class="pill">Algorithms</span>
+          <span class="pill">MCMC</span>
+          <span class="pill">Python</span>
+        </div>
+        <p class="desc">
+          Single-site dynamics with conflict-aware resampling to approximate counts and draw near-uniform colorings.
+          Includes runtime benchmarks and small proofs-of-concept.
+        </p>
+        <div class="links">
+          <a class="btn" href="https://doi.org/10.1002/rsa.3240070205" target="_blank" rel="noopener">Based on this paper</a>
+          <a class="bubble" href="graph-coloring-demo.mp4" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="#e9eef7" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Video demo
+          </a>
+          <span class="btn muted" title="Repo private for now">Code (private)</span>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="card" data-tags="ml" data-keywords="autoencoder pytorch sparse entropy dynamic structure pruning">
+        <div class="titleline">
+          <h2>Dynamic Structure Autoencoder</h2>
+          <span class="status"><span>●</span> Private</span>
+        </div>
+        <div class="meta">Adaptive autoencoder with entropy-inspired sparsity and neuron pruning.</div>
+        <div class="pills">
+          <span class="pill">ML</span>
+          <span class="pill">PyTorch</span>
+          <span class="pill">Optimization</span>
+        </div>
+        <p class="desc">
+          Learns compact latent representations by encouraging sparse activations; prunes inactive neurons during training
+          to shrink model size without hurting performance.
+        </p>
+        <div class="links">
+          <span class="btn muted" title="Repo private for now">Code (private)</span>
+          <span class="btn muted" title="Demo coming soon">Demo (soon)</span>
+        </div>
+      </article>
+
+    </div>
+
+    <footer>
+      © <span id="y"></span> Hassan El Bouz · <a href="mailto:helbouz@ethz.ch">helbouz@ethz.ch</a>
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Search + filters
+    const q = document.getElementById('search');
+    const tags = Array.from(document.querySelectorAll('.tag[data-tag]'));
+    const clear = document.getElementById('clearFilters');
+    const cards = Array.from(document.querySelectorAll('#projGrid .card'));
+    let activeTags = new Set();
+
+    function applyFilters(){
+      const text = (q.value || '').toLowerCase().trim();
+      cards.forEach(el=>{
+        const tgs = (el.dataset.tags || '').toLowerCase();
+        const kw = (el.dataset.keywords || '').toLowerCase();
+        const matchesText = !text || el.textContent.toLowerCase().includes(text) || kw.includes(text);
+        const matchesTags = activeTags.size===0 || [...activeTags].some(t => tgs.includes(t));
+        el.style.display = (matchesText && matchesTags) ? '' : 'none';
+      });
+    }
+
+    q.addEventListener('input', applyFilters);
+
+    tags.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const tag = btn.dataset.tag;
+        const on = btn.getAttribute('data-active') === 'true';
+        btn.setAttribute('data-active', String(!on));
+        if(on) activeTags.delete(tag); else activeTags.add(tag);
+        applyFilters();
+      });
+    });
+
+    clear.addEventListener('click', ()=>{
+      activeTags.clear();
+      tags.forEach(b=>b.setAttribute('data-active','false'));
+      q.value = '';
+      applyFilters();
+    });
+  </script>
+</body>
+</html>
