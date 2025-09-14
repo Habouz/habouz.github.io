@@ -3,165 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hassan El Bouz — Personal Site</title>
-  <meta name="description" content="Personal website of Hassan El Bouz — Quantum Engineering student at ETH Zurich: projects, publications, CV, contact.">
-  <meta property="og:title" content="Hassan El Bouz — Personal Site" />
-  <meta property="og:description" content="Projects • Publications • CV • Contact" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og.png" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Hassan El Bouz — Home</title>
   <style>
     :root{
-      --bg:#0b0d12; --card:#121621; --text:#e9eef7; --muted:#9aa3b2; --brand:#4ea8ff; --accent:#7ee787;
-      --br:18px; --shadow:0 10px 30px rgba(0,0,0,.25);
+      --bg:#0b0d12; --card:#121621; --text:#e9eef7;
+      --brand:#4ea8ff; --accent:#7ee787;
+      --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;background:radial-gradient(1200px 600px at 70% -10%,rgba(78,168,255,.15),transparent),var(--bg);color:var(--text);line-height:1.6}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:28px}
-    header{display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:center;margin-top:10px}
-    .avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
-    h1{margin:0;font-size:32px;letter-spacing:.2px}
-    .tag{color:var(--muted)}
-    nav{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap}
-    nav a{padding:8px 12px;background:var(--card);border-radius:999px;border:1px solid #1f2430}
-    .grid{display:grid;gap:18px}
-    .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:var(--card);border:1px solid #1f2430;border-radius:var(--br);padding:18px;box-shadow:var(--shadow)}
-    h2{margin:28px 0 12px;font-size:22px}
-    h3{margin:0 0 6px;font-size:16px}
-    .muted{color:var(--muted)}
-    .list{display:grid;gap:10px}
-    .pill{display:inline-flex;gap:8px;align-items:center;padding:4px 8px;border:1px solid #263043;border-radius:999px;color:var(--muted);font-size:12px}
-    .row{display:flex;gap:8px;flex-wrap:wrap}
-    .cta{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#7aa8ff);color:#00142b;border:none}
-    footer{margin:30px 0 16px;color:var(--muted);font-size:14px}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media (max-width:820px){.two{grid-template-columns:1fr}}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .grid{
+      display:grid;
+      gap:28px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      max-width:600px;
+      width:100%;
+      padding:28px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--br);
+      padding:40px;
+      text-align:center;
+      font-size:24px;
+      font-weight:600;
+      color:var(--text);
+      text-decoration:none;
+      box-shadow:var(--shadow);
+      border:1px solid #1f2430;
+      transition:transform .15s ease,box-shadow .15s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+    }
+    .projects{background:linear-gradient(135deg,var(--brand),#6ec6ff);}
+    .cv{background:linear-gradient(135deg,var(--accent),#9ef7b7);}
   </style>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Hassan El Bouz",
-    "affiliation":{"@type":"CollegeOrUniversity","name":"ETH Zurich"},
-    "email":"mailto:hassan.elbouz@ethz.ch",
-    "url":"https://your-domain.tld",
-    "sameAs":["https://www.linkedin.com/in/your-handle","https://github.com/your-handle"]
-  }
-  </script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="avatar" aria-hidden="true"></div>
-      <div>
-        <h1>Hassan El Bouz</h1>
-        <div class="tag">MSc Quantum Engineering @ ETH Zurich • Quantum algorithms & information</div>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#pubs">Publications</a>
-          <a href="#cv">CV</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
-
-    <section id="about" class="grid two">
-      <div class="card">
-        <h2>About</h2>
-        <p>Graduate student focused on quantum information and algorithms. I enjoy coding, research, and teaching. My goal is to contribute a rigorous, impactful result to the field.</p>
-        <div class="row">
-          <span class="pill">Python • PyTorch</span>
-          <span class="pill">Quantum • Qiskit</span>
-          <span class="pill">LaTeX</span>
-          <span class="pill">Mathematics</span>
-        </div>
-      </div>
-      <div class="card">
-        <h2>Highlights</h2>
-        <ul class="list">
-          <li><strong>Research:</strong> Distributed quantum‑gate teleportation; pseudoconvex hypersurfaces (Fefferman metric, chains).</li>
-          <li><strong>Engineering:</strong> Solar‑battery systems, inverter control, energy efficiency.</li>
-          <li><strong>Teaching:</strong> Mentored peers in math/physics and intro ML.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="grid cards">
-        <article class="card">
-          <h3>Graph‑Coloring via Markov Chains</h3>
-          <p class="muted">Python • MCMC • Complexity</p>
-          <p>Polynomial‑time estimator for k‑colorings on sparse graphs using aergodic single‑site dynamics and conflict‑minimizing resampling.</p>
-          <a class="cta" href="#" target="_blank" rel="noopener">Code</a>
-        </article>
-        <article class="card">
-          <h3>Distributed Gate Teleportation</h3>
-          <p class="muted">Quantum • Qiskit</p>
-          <p>Simulation of non‑local gates via entanglement and classical feedforward; compares resource counts to direct compilation.</p>
-          <a class="cta" href="#" target="_blank" rel="noopener">Preprint</a>
-        </article>
-        <article class="card">
-          <h3>Inverter Control for PV‑Battery</h3>
-          <p class="muted">Embedded • Energy</p>
-          <p>Priority scheduler: PV → Battery → Utility‑1 → Utility‑2; avoids parallel utility tie‑in with safe switching.</p>
-          <a class="cta" href="#" target="_blank" rel="noopener">Notes</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="pubs">
-      <h2>Publications</h2>
-      <div class="card">
-        <ul class="list">
-          <li>
-            <strong>On the local behavior of chains on strongly pseudoconvex hypersurfaces in C³</strong><br>
-            <span class="muted">N. Bakaev, S. Ban, H. El Bouz, G. Della Sala, A. Hussein, J. Moussa. Proc. AMS (2025).</span>
-            <div class="row" style="margin-top:6px">
-              <a class="pill" href="https://www.ams.org/journals/proc/2025-153-07/S0002-9939-2025-17225-2/" target="_blank" rel="noopener">Publisher</a>
-              <a class="pill" href="#" target="_blank" rel="noopener">PDF</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="cv">
-      <h2>CV</h2>
-      <div class="card">
-        <p>Download the latest CV.</p>
-        <a class="cta" href="/Hassan-ElBouz-CV.pdf" download>Download CV</a>
-      </div>
-    </section>
-
-    <section id="contact" class="grid two">
-      <div class="card">
-        <h2>Contact</h2>
-        <p>Email (aliases both reach the same inbox):</p>
-        <p>
-          <a href="mailto:firstname.lastname@student.ethz.ch">firstname.lastname@student.ethz.ch</a><br>
-          <a href="mailto:firstname.lastname@ethz.ch">firstname.lastname@ethz.ch</a>
-        </p>
-        <p class="muted">For admin matters, use @student.ethz.ch. For CV/public use, @ethz.ch is fine.</p>
-      </div>
-      <div class="card">
-        <h2>Links</h2>
-        <ul class="list">
-          <li><a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="mailto:firstname.lastname@ethz.ch">Email</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="y"></span> Hassan El Bouz. Built with a single HTML file.
-    </footer>
+  <div class="grid">
+    <a class="card projects" href="projects.html">Projects</a>
+    <a class="card cv" href="cv.html">CV</a>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
