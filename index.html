@@ -7,7 +7,7 @@
   <style>
     :root{
       --bg:#0b0d12; --card:#121621; --text:#e9eef7;
-      --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa;
+      --brand:#4ea8ff; --accent:#7ee787; --violet:#a78bfa; --amber:#f6c76f;
       --line:#1f2430; --br:18px; --shadow:0 8px 25px rgba(0,0,0,.25);
 
       --sb-collapsed: 80px;
@@ -33,12 +33,13 @@
     header h1{ font-size:34px; margin:0 0 10px; }
     header p{ font-size:18px; color:#c3c8d3; margin:0; }
 
-    /* Cards grid */
+    /* Cards grid (now 4 columns on wide screens) */
     .grid{
-      display:grid; gap:24px; width:100%; max-width:860px;
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      display:grid; gap:24px; width:100%; max-width:1100px;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
       margin-bottom:40px;
     }
+    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(3, minmax(220px,1fr)); } }
     @media (max-width: 900px){ .grid{ grid-template-columns: repeat(2, minmax(220px,1fr)); } }
     @media (max-width: 520px){ .grid{ grid-template-columns: 1fr; } }
 
@@ -50,9 +51,21 @@
     }
     .card:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.35); }
 
+    /* Colored labels */
     .projects span{ color:var(--brand); }
     .cv span{ color:var(--accent); }
     .pubs span{ color:var(--violet); }
+    .talks span{ color:var(--amber); }
+
+    /* Small subtitle inside cards (for “Coming soon”) */
+    .card small{
+      display:block;
+      margin-top:10px;
+      font-size:14px;
+      font-weight:500;
+      color:#c3c8d3;
+      opacity:.85;
+    }
 
     /* Video section */
     .video-section{
@@ -123,6 +136,7 @@
       <a class="card projects" href="projects.html"><span>Projects</span></a>
       <a class="card cv" href="cv.html"><span>CV</span></a>
       <a class="card pubs" href="publications.html"><span>Publications</span></a>
+      <a class="card talks" href="talks.html"><span>Talks</span><small>Coming soon</small></a>
     </div>
 
     <!-- Video Placeholder -->
