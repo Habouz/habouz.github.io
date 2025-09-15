@@ -165,32 +165,6 @@
     <div id="projGrid" class="grid">
 
       <!-- Project 1 -->
-      <article class="card" data-tags="algorithms" data-keywords="graph coloring markov chains mcmc complexity python">
-        <div class="titleline">
-          <h2>Graph-Coloring via Markov Chains</h2>
-          <span class="status private"><span>●</span> Private</span>
-        </div>
-        <div class="meta">Algorithmic sampler & estimator for <em>k</em>-colorings on sparse graphs.</div>
-        <div class="pills">
-          <span class="pill">Algorithms</span>
-          <span class="pill">MCMC</span>
-          <span class="pill">Python</span>
-        </div>
-        <p class="desc">
-          Single-site dynamics with conflict-aware resampling to approximate counts and draw near-uniform colorings.
-          Includes runtime benchmarks and small proofs-of-concept.
-        </p>
-        <div class="links">
-          <a class="btn" href="https://doi.org/10.1002/rsa.3240070205" target="_blank" rel="noopener">Based on this paper</a>
-          <a class="bubble" href="graph-coloring-demo.mp4" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            Video demo
-          </a>
-          <span class="btn muted">Code (private)</span>
-        </div>
-      </article>
-
-      <!-- Project 2 -->
       <article class="card" data-tags="ml" data-keywords="autoencoder pytorch sparse entropy pruning">
         <div class="titleline">
           <h2>Dynamic Structure Autoencoder</h2>
@@ -203,14 +177,38 @@
           <span class="pill">Optimization</span>
         </div>
         <p class="desc">
-          Learns compact latent representations by encouraging sparse activations; prunes inactive neurons during training
-          to shrink model size without hurting performance.
+          A self adjusting neural network architecture that prunes and shapes during training. The model relies on a path-integral formulation of entropy included in the loss function to promote a bottleneck structure. Tested on CIFAR10 and MNIST datasets. Implemented in PyTorch and Numpy.  
         </p>
         <div class="links">
           <a class="btn" href="https://github.com/Habouz/Hypercoder" target="_blank" rel="noopener">GitHub Repo</a>
         </div>
       </article>
 
+      <!-- Project 2 -->
+      <article class="card" data-tags="algorithms" data-keywords="graph coloring markov chains mcmc complexity python">
+        <div class="titleline">
+          <h2>Graph-Coloring via Markov Chains</h2>
+          <span class="status private"><span>●</span> Private</span>
+        </div>
+        <div class="meta">Algorithmic sampler & estimator for <em>k</em>-colorings on sparse graphs.</div>
+        <div class="pills">
+          <span class="pill">Algorithms</span>
+          <span class="pill">MCMC</span>
+          <span class="pill">Python</span>
+        </div>
+        <p class="desc">
+          Algorithm + Visualization of a Markov Chain Monte Carlo method for sampling and estimating the number of colorings a graph can have in polynomial time. Video and code done in python with libraries: Manim, Numpy, Matplotlib. Analysis of the speed of convergence is also present.
+        </p>
+        <div class="links">
+          <a class="btn" href="https://doi.org/10.1002/rsa.3240070205" target="_blank" rel="noopener">Based on this paper</a>
+          <a class="bubble" href="graph-coloring-demo.mp4" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Video demo
+          </a>
+          <span class="btn muted">Code (private)</span>
+        </div>
+      </article>
+      <!-- More projects can be added here following the same structure -->
     </div>
 
     <footer>
