@@ -110,3 +110,22 @@
     }
   });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bugBtn = document.querySelector(".bug-report-btn");
+  if (bugBtn) {
+    bugBtn.addEventListener("click", () => {
+      const bug = prompt("Please describe the bug you encountered:");
+      if (bug) {
+        // For now, just log it
+        console.log("Bug reported:", bug);
+
+        // Option 1: send by email (mailto)
+        window.location.href = `mailto:helbouz@ethz.ch?subject=Bug Report&body=${encodeURIComponent(bug)}`;
+
+        // Option 2: later, send to server endpoint with fetch()
+      }
+    });
+  }
+});
+

@@ -201,8 +201,29 @@
   pointer-events: auto;
 }
 
-/* (Remove the old rule)
-.nav-dropdown:hover .nav-dropmenu,
-.nav-dropdown:focus-within .nav-dropmenu{ ... }
-*/
+.nav .nav-link.disabled,
+.nav .nav-link.disabled:hover {
+  text-decoration: none;
+  cursor: default;   /* makes it clear it's not clickable */
+  opacity: 0.6;      /* optional: style it as inactive */
+}
+
+.nav-dropmenu .bug-report-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-dropmenu .bug-report-btn:hover {
+  filter: brightness(1.1);
+  text-decoration: none;
+}
 
