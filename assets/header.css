@@ -1,0 +1,208 @@
+:root{ --nav-gap:28px; }
+
+/* Header shell */
+.site-header{
+  position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:1200;
+  backdrop-filter:saturate(140%) blur(8px);
+  background:linear-gradient(180deg, rgba(10,12,18,.75), rgba(10,12,18,.45)), var(--bg);
+  border-bottom:1px solid var(--line); box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+:root[data-theme="light"] .site-header{
+  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55)), var(--card);
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+.nav{
+  max-width:1200px; height:100%; margin:0 auto; padding:0 16px;
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px;
+}
+.brand{ color:var(--text); text-decoration:none; font-weight:700; letter-spacing:.2px; }
+.brand:hover{ opacity:.9; }
+
+/* Links row */
+.nav-list{
+  list-style:none; margin:0; padding:0;
+  display:flex; align-items:center; justify-content:center; gap:var(--nav-gap);
+}
+
+/* Animated underline */
+.nav-link{
+  position:relative; display:inline-block; color:var(--muted);
+  text-decoration:none; font-weight:600; font-size:15px; padding:6px 2px;
+  transition:color .15s ease;
+}
+.nav-link:hover{ color:var(--text); }
+.nav-link::after{
+  content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px;
+  background:transparent; transform:scaleX(0); transform-origin:left center;
+  transition:transform .18s ease, background-color .18s ease;
+}
+.nav-link:hover::after{ background:var(--brand); transform:scaleX(1); }
+.nav-link.active{ color:var(--text); }
+.nav-link.active::after{ background:var(--brand); transform:scaleX(1); }
+
+/* Dropdown */
+.nav-dropdown{ position:relative; }
+.nav-dropbtn{ background:none; border:0; cursor:pointer; color:var(--muted); font-weight:600; }
+.nav-dropbtn:hover{ color:var(--text); }
+
+/* Panel (compact, centered under trigger) */
+.nav-dropmenu{
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  list-style:none;
+  margin:0;
+  padding:1px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:2px;
+  min-width:220px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s ease;
+  z-index:6;
+}
+/* Force it lower by 20px without creating a hover gap */
+.nav-dropdown > .nav-dropmenu{ top:calc(100% + 5px); }
+
+/* Hover bridge: covers the 20px offset to prevent flicker */
+.nav-dropmenu::before{
+  content:"";
+  position:absolute;
+  top:-20px; left:0px; right:0; height:20px;
+  pointer-events:auto;
+}
+
+/* Items */
+.nav-dropmenu a, .nav-dropmenu .drop-bug{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px;
+  color:var(--text); text-decoration:none; background:transparent; border:0; text-align:left; cursor:pointer;
+}
+.nav-dropmenu svg{ width:18px !important; height:18px !important; flex:0 0 18px; display:block; }
+.nav-dropmenu i{ font-size:16px !important; width:18px; text-align:center; flex:0 0 18px; }
+.nav-dropmenu span{ line-height:1.2; }
+
+/* Visible hover (dark & light) */
+.nav-dropmenu li > a,
+.nav-dropmenu li > .drop-bug{
+  transition: background-color .12s ease, outline-color .12s ease;
+}
+:root:not([data-theme="light"]) .nav-dropmenu li > a:hover,
+:root:not([data-theme="light"]) .nav-dropmenu li > .drop-bug:hover{
+  background: color-mix(in oklab, var(--brand) 16%, transparent);
+  outline: 1px solid color-mix(in oklab, var(--brand) 20%, transparent);
+}
+:root[data-theme="light"] .nav-dropmenu li > a:hover,
+:root[data-theme="light"] .nav-dropmenu li > .drop-bug:hover{
+  background: color-mix(in oklab, var(--brand) 12%, #ffffff 88%);
+  outline: 1px solid color-mix(in oklab, var(--brand) 28%, transparent);
+}
+.nav-dropdown .nav-dropmenu li > a:hover,
+.nav-dropdown .nav-dropmenu li > .drop-bug:hover{ color:var(--text); }
+
+/* Show on hover/focus */
+.nav-dropdown:hover .nav-dropmenu,
+.nav-dropdown:focus-within .nav-dropmenu{
+  opacity:1; pointer-events:auto;
+}
+
+/* Theme button inside header */
+.theme-li{ margin-left:4px; }
+.theme-btn{
+  border:1px solid var(--line); background:var(--card); color:var(--text);
+  border-radius:12px; width:42px; height:34px; display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow); cursor:pointer;
+}
+
+/* Mobile */
+.nav-toggle{ display:none; width:40px; height:34px; border-radius:10px;
+  border:1px solid var(--line); background:var(--card); color:var(--text);
+  align-items:center; justify-content:center; gap:4px; cursor:pointer; }
+.nav-toggle .bar{ width:18px; height:2px; background:currentColor; display:block; }
+
+@media (max-width:860px){
+  .nav{ grid-template-columns:auto auto; }
+  .nav-toggle{ display:inline-flex; justify-self:end; }
+  .nav-list{
+    position:fixed; top:var(--header-h); right:12px; left:12px;
+    background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow);
+    display:grid; gap:14px; padding:12px; transform-origin:top center;
+    transform:scaleY(0.96); opacity:0; pointer-events:none;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .site-header.menu-open .nav-list{ opacity:1; transform:scaleY(1); pointer-events:auto; }
+  .nav-dropdown{ justify-self:start; }
+  /* In mobile sheet, dropdown is inline */
+  .nav-dropmenu{
+    position:relative; top:0; left:0; transform:none;
+    opacity:1; pointer-events:auto; border-radius:12px; box-shadow:none;
+  }
+}
+
+/* Dropdown */
+.nav-dropdown{
+  position: relative;
+  display: inline-block;     /* shrink the <li> to the Contact text only */
+}
+.nav-dropbtn{
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 6px 2px;          /* same hitbox as other links */
+}
+.nav-dropbtn:hover{ color: var(--text); }
+
+/* Panel */
+.nav-dropmenu{
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 2px;
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
+  z-index: 6;
+}
+
+/* Hover bridge to avoid flicker when moving from button to panel */
+.nav-dropmenu::before{
+  content:"";
+  position:absolute;
+  top:-10px;                 /* keep it small so it doesn't reach the theme toggle */
+  left:0; right:0;
+  height:10px;
+  pointer-events:auto;
+}
+
+/* Show ONLY when the button is hovered/focused, or the menu itself is hovered/focused */
+.nav-dropdown .nav-dropbtn:hover + .nav-dropmenu,
+.nav-dropdown .nav-dropbtn:focus-visible + .nav-dropmenu,
+.nav-dropdown .nav-dropmenu:hover,
+.nav-dropdown .nav-dropmenu:focus-within{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* (Remove the old rule)
+.nav-dropdown:hover .nav-dropmenu,
+.nav-dropdown:focus-within .nav-dropmenu{ ... }
+*/
+
