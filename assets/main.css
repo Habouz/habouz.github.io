@@ -336,8 +336,28 @@ footer{
   box-shadow:var(--shadow); padding:20px; text-align:left;
 }
 .video-section h2{ margin:0 0 16px; font-size:20px; color:var(--brand); }
-.video-placeholder{ position:relative; padding-top:56.25%; background:#eef3ff; border-radius:var(--radius); overflow:hidden; }
-:root[data-theme="dark"] .video-placeholder{ background:#0f1320; }
+
+/* Give the placeholder an explicit aspect ratio */
+.video-placeholder{
+  position: relative;
+  aspect-ratio: 16 / 9;      /* simpler than padding-top hack */
+  background: transparent;   /* optional */
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Make <video> fill it, like the old iframe */
+.video-placeholder video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* or 'contain' if you prefer */
+  display: block;
+  border: 0;
+}
+
+
 .video-placeholder iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
 /* ===== Frosted Glass Effect for Cards ===== */
