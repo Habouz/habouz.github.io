@@ -325,6 +325,12 @@ footer{
 .pubs span{     color:var(--violet); }
 .talks span{    color:var(--amber); }
 
+:root[data-theme="dark"] .projects span { color: #6cb8ff; }   /* brighter blue */
+:root[data-theme="dark"] .cv span       { color: #9eff9c; }   /* brighter green */
+:root[data-theme="dark"] .pubs span     { color: #c59cff; }   /* brighter violet */
+:root[data-theme="dark"] .talks span    { color: #ffd97a; }   /* brighter amber */
+
+
 .home-card small{
   display:block; margin-top:10px; font-size:14px; font-weight:500; color:var(--muted); opacity:.9;
 }
