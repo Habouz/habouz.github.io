@@ -1,3 +1,4 @@
+/* =CSS (main.css) */
 /* =========================================================
    Global Design Tokens
    ========================================================= */
@@ -8,17 +9,17 @@
   --action-h:38px;
 
   /* Dark theme base */
-  --bg:#0b0d12;
+  --bg:#000000;
   --card:#121621;
   --text:#e9eef7;
-  --muted:#b9c0cd;
-  --line:#1f2430;
+  --muted:#cfcfcf;
+  --line:#004cff00;
 
   /* Brand hues */
-  --brand:#4ea8ff;
-  --accent:#7ee787;
-  --violet:#a78bfa;
-  --amber:#f6c76f;
+  --brand:#b5dbff;
+  --accent:#a2f0a8;
+  --violet:#d0c1ff;
+  --amber:#ffdea1;
 
   /* UI surfaces */
   --chip-bg:#121621;   --chip-border:#1f2430;
@@ -35,7 +36,7 @@
   --shadow:0 8px 25px rgba(0,0,0,.25);
 
   /* Vibrant gradient stops */
-  --g1:#4ea8ff;  /* blue   */
+  --g1:#4ea9ff;  /* blue   */
   --g2:#7ee787;  /* green  */
   --g3:#a78bfa;  /* violet */
   --g4:#f6c76f;  /* amber  */
@@ -48,16 +49,16 @@
 
 /* Light theme overrides */
 :root[data-theme="light"]{
-  --bg:#f6f8fb;
+  --bg:#ffffff9f;
   --card:#ffffff;
   --text:#0b1220;
-  --muted:#5b657a;
+  --muted:#0c0e14;
   --line:#e5e9f2;
 
-  --brand:#2563eb;
-  --accent:#16a34a;
-  --violet:#7c3aed;
-  --amber:#d1a14c;
+  --brand:#f6ffd6;
+  --accent:#e0ffd8;
+  --violet:#c4fdff;
+  --amber:#ffcd77;
 
   --chip-bg:#ffffff;   --chip-border:#e5e9f2;
   --search-bg:#ffffff; --search-border:#e5e9f2;
@@ -87,61 +88,61 @@ body {
 
   background:
     /* purple-violet core */
-    radial-gradient(1700px 950px at 70% -15%,
-      rgba(153, 51, 255, 0.65) 0%,   /* violet */
-      rgba(153, 51, 255, 0.35) 50%,
+    radial-gradient(1800px 1000px at 70% -15%,
+      rgb(138, 20, 255) 0%,   /* violet */
+      rgba(179, 102, 255, 0.45) 50%,
       transparent 100%),
     /* blue wash */
-    radial-gradient(1700px 950px at 12% 88%,
-      rgba(77, 77, 255, 0.62) 0%,    /* deep blue */
-      rgba(77, 77, 255, 0.32) 55%,
+    radial-gradient(1800px 1000px at 12% 88%,
+      rgba(43, 20, 255, 0.82) 0%,    /* deep blue */
+      rgba(77, 77, 255, 0.42) 55%,
       transparent 100%),
     /* cyan glow */
-    radial-gradient(1600px 880px at 90% 65%,
-      rgba(51, 230, 255, 0.6) 0%,    /* cyan */
-      rgba(51, 230, 255, 0.3) 55%,
+    radial-gradient(1700px 920px at 90% 65%,
+      rgba(51, 230, 255, 0.75) 0%,    /* cyan */
+      rgba(51, 230, 255, 0.35) 55%,
       transparent 100%),
     /* indigo soft spot */
-    radial-gradient(1500px 860px at 20% 20%,
-      rgba(100, 80, 255, 0.55) 0%,   /* indigo */
-      rgba(100, 80, 255, 0.28) 55%,
+    radial-gradient(1600px 900px at 20% 20%,
+      rgb(225, 0, 255) 0%,   /* indigo */
+      rgba(100, 80, 255, 0.38) 55%,
       transparent 100%),
     /* accent amber/pink for contrast */
-    radial-gradient(1600px 880px at 45% 80%,
-      rgba(255, 153, 51, 0.38) 0%,   /* orange */
-      rgba(255, 153, 51, 0.18) 55%,
+    radial-gradient(500px 420px at 45% 80%,
+      rgb(255, 51, 129) 0%,   /* orange */
+      rgb(255, 153, 51) 55%,
       transparent 100%),
-    radial-gradient(1500px 800px at 80% 20%,
-      rgba(255, 77, 170, 0.38) 0%,   /* pink */
-      rgba(255, 77, 170, 0.18) 55%,
+    radial-gradient(1600px 840px at 80% 20%,
+      rgba(255, 77, 170, 0.5) 0%,   /* pink */
+      rgba(255, 77, 170, 0.25) 55%,
       transparent 100%),
     linear-gradient(to bottom,
-      color-mix(in srgb, var(--bg) 78%, #0e1420) 0%,
-      color-mix(in srgb, var(--bg) 70%, #0a0f1a) 100%);
+      color-mix(in srgb, var(--bg) 100%, #000000) 100%,
+      color-mix(in srgb, var(--bg) 50%, #e100ff) 0%);
   background-attachment: fixed;
-  background-size: 220% 220%, 220% 220%, 200% 200%, 200% 200%, 200% 200%, 200% 200%, auto;
-  animation: bg-drift 30s ease-in-out infinite alternate;
+  background-size: 250% 250%, 250% 250%, 230% 230%, 230% 230%, 230% 230%, 230% 230%, auto;
+  animation: bg-drift 10000000000000000s ease-in-out infinite alternate;
 }
 
 /* --- LIGHT: blue/purple-heavy rainbow bleed --- */
 :root[data-theme="light"] body {
   background:
-    radial-gradient(1700px 950px at 70% -15%,
-      rgba(153, 51, 255, 0.35) 0%,
-      rgba(153, 51, 255, 0.15) 55%,
+    radial-gradient(1800px 1000px at 70% -15%,
+      rgba(194, 133, 255, 0.87) 0%,
+      rgba(199, 143, 255, 0.747) 55%,
       transparent 100%),
-    radial-gradient(1700px 950px at 12% 88%,
-      rgba(77, 77, 255, 0.32) 0%,
-      rgba(77, 77, 255, 0.15) 55%,
+    radial-gradient(1800px 1000px at 12% 88%,
+      rgba(180, 180, 255, 0.685) 0%,
+      rgba(116, 116, 255, 0.603) 55%,
       transparent 100%),
-    radial-gradient(1600px 880px at 90% 65%,
-      rgba(51, 230, 255, 0.28) 0%,
-      rgba(51, 230, 255, 0.12) 55%,
+    radial-gradient(1700px 920px at 90% 65%,
+      rgba(51, 231, 255, 0.815) 0%,
+      rgba(51, 231, 255, 0.733) 55%,
       transparent 100%),
-    linear-gradient(to bottom, #f6f8fb 0%, #eef2f8 100%);
+    linear-gradient(to bottom, #0066ff02 0%, #76adff00 100%);
   background-attachment: fixed;
-  background-size: 200% 200%, 200% 200%, 180% 180%, auto;
-  animation: bg-drift 34s ease-in-out infinite alternate;
+  background-size: 220% 220%, 220% 220%, 200% 200%, auto;
+  animation: bg-drift 1000000000000000000s ease-in-out infinite alternate;
 }
 
 
@@ -325,11 +326,14 @@ footer{
 .pubs span{     color:var(--violet); }
 .talks span{    color:var(--amber); }
 
-:root[data-theme="dark"] .projects span { color: #6cb8ff; }   /* brighter blue */
-:root[data-theme="dark"] .cv span       { color: #9eff9c; }   /* brighter green */
-:root[data-theme="dark"] .pubs span     { color: #c59cff; }   /* brighter violet */
-:root[data-theme="dark"] .talks span    { color: #ffd97a; }   /* brighter amber */
+/* This block was removed to make the colors dimmer (reverting to the base variables)
 
+:root[data-theme="dark"] .projects span { color: #6cb8ff; } 
+:root[data-theme="dark"] .cv span       { color: #9eff9c; } 
+:root[data-theme="dark"] .pubs span     { color: #c59cff; } 
+:root[data-theme="dark"] .talks span    { color: #ffd97a; } 
+
+*/
 
 .home-card small{
   display:block; margin-top:10px; font-size:14px; font-weight:500; color:var(--muted); opacity:.9;
