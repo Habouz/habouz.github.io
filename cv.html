@@ -4,119 +4,42 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hassan El Bouz — CV</title>
-
-  <!-- Global styles -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
   <link rel="stylesheet" href="assets/main.css">
   <link rel="stylesheet" href="assets/header.css">
-
-  <!-- Page-only tweaks (kept tiny) -->
-  <style>
-    /* Don’t replace global bg; add a gentle CV accent on top */
-    body.page-cv::before{
-      content:""; position:fixed; inset:-2px; z-index:-1; pointer-events:none;
-      background:
-        radial-gradient(900px 420px at 70% -10%, color-mix(in srgb, var(--g1) 16%, transparent), transparent 65%),
-        radial-gradient(620px 320px at 15% 85%,  color-mix(in srgb, var(--g2) 12%, transparent), transparent 70%),
-        radial-gradient(500px 500px at 92% 88%,  color-mix(in srgb, var(--g3) 12%, transparent), transparent 70%);
-      background-attachment:fixed;
-      mix-blend-mode:screen; opacity:.9;
-    }
-    html[data-theme="light"] body.page-cv::before{
-      mix-blend-mode:multiply; opacity:.8;
-    }
-
-    /* CV layout: main + sidebar */
-    .two{ display:grid; grid-template-columns:2fr 1fr; gap:15px; }
-    @media (max-width:1100px){ .two{ grid-template-columns:1fr; } }
-
-    /* Small utilities unique to this page */
-    .title .tag{ margin-top:6px; color:var(--muted); }
-    .stack{ display:flex; flex-direction:column; gap:16px; }
-    .divider{ height:1px; background:var(--line); margin:10px 0; }
-  </style>
 </head>
 
 <body class="page-cv">
-  <!-- Global header (same across site) -->
   <header class="site-header" role="banner">
     <nav class="nav">
-      <span class="brand">Hassan&nbsp;El&nbsp;Bouz</span>
-
+      <span class="brand">Hassan&nbsp;Bouz</span>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span class="bar" aria-hidden="true"></span>
-        <span class="bar" aria-hidden="true"></span>
-        <span class="bar" aria-hidden="true"></span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
-
       <ul class="nav-list" role="menubar">
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="projects.html">Projects</a></li>
         <li><a class="nav-link active" href="cv.html">CV</a></li>
         <li><a class="nav-link" href="publications.html">Publications</a></li>
-        <li><span class="nav-link disabled" aria-disabled="true">Talks</span></li>
-
-      <li class="nav-dropdown">
-        <button class="nav-link nav-dropbtn">Contact</button>
-        <ul class="nav-dropmenu">
-          <li>
-            <a href="mailto:helbouz@ethz.ch">
-              <!-- Email icon -->
-              <svg viewBox="0 0 24 24" class="ico"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12c0 
-              1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2zm0 
-              4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              Email
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/Habouz" target="_blank" rel="noopener">
-              <!-- GitHub icon -->
-              <svg viewBox="0 0 24 24" class="ico"><path fill="currentColor"
-              d="M12 2C6.48 2 2 6.58 2 12.24c0 4.5 2.87 
-              8.32 6.84 9.67.5.09.66-.22.66-.48v-1.68c-2.78.61-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.49-1.1-1.49-.9-.63.07-.62.07-.62 
-              1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.08 
-              0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 
-              0 0 .84-.27 2.75 1.05a9.38 9.38 0 0 1 5 0c1.91-1.32 
-              2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 
-              1.03 1.63 1.03 2.75 0 3.95-2.34 4.82-4.57 5.08.36.31.68.92.68 1.86v2.76c0 
-              .26.16.57.67.48A10.25 10.25 0 0 0 22 12.24C22 6.58 
-              17.52 2 12 2Z"/></svg>
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/hassan-el-bouz-444895177/" target="_blank" rel="noopener">
-              <!-- LinkedIn icon -->
-              <svg viewBox="0 0 24 24" class="ico"><path fill="currentColor"
-              d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 
-              2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 
-              2-2h14M8.34 17.34V10.7H6V17.3h2.34m-1.17-7.6c.79 
-              0 1.43-.64 1.43-1.43S7.96 6.84 7.17 
-              6.84A1.43 1.43 0 0 0 5.74 8.27c0 .79.64 
-              1.43 1.43 1.43m11.09 7.6v-3.73c0-1.99-1.06-2.91-2.47-2.91-1.14 
-              0-1.65.64-1.94 1.1v-.94H12v6.47h2.34v-3.58c0-.19.01-.39.07-.53.15-.39.49-.8 
-              1.06-.8.75 0 1.05.6 1.05 1.47v3.44h2.34z"/></svg>
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href="https://scholar.google.com/citations?user=LHx0P_kAAAAJ&hl" target="_blank" rel="noopener">
-              <!-- Scholar icon (book) -->
-              <svg viewBox="0 0 24 24" class="ico"><path fill="currentColor"
-              d="M18 2H6a2 2 0 0 0-2 
-              2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 
-              0 0-2-2m0 18H6V4h12v16M8 6h8v2H8V6m0 
-              4h8v2H8v-2Z"/></svg>
-              Google Scholar
-            </a>
-          </li>
-        </ul>
-      </li>
-
-
+        <li><span class="nav-link disabled">Talks</span></li>
+        <li class="nav-dropdown">
+          <button class="nav-link nav-dropbtn">Contact</button>
+          <ul class="nav-dropmenu">
+            <li><a href="mailto:helbouz@ethz.ch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a></li>
+            <li><a href="https://github.com/Habouz" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.5 2.87 8.32 6.84 9.67.5.09.66-.22.66-.48v-1.68c-2.78.61-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.49-1.1-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05a9.38 9.38 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.95-2.34 4.82-4.57 5.08.36.31.68.92.68 1.86v2.76c0 .26.16.57.67.48A10.25 10.25 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z"/></svg>GitHub</a></li>
+            <li><a href="https://linkedin.com/in/hassan-el-bouz-444895177/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.34 17.34V10.7H6V17.3h2.34m-1.17-7.6c.79 0 1.43-.64 1.43-1.43S7.96 6.84 7.17 6.84A1.43 1.43 0 0 0 5.74 8.27c0 .79.64 1.43 1.43 1.43m11.09 7.6v-3.73c0-1.99-1.06-2.91-2.47-2.91-1.14 0-1.65.64-1.94 1.1v-.94H12v6.47h2.34v-3.58c0-.19.01-.39.07-.53.15-.39.49-.8 1.06-.8.75 0 1.05.6 1.05 1.47v3.44h2.34z"/></svg>LinkedIn</a></li>
+            <li><a href="https://scholar.google.com/citations?user=LHx0P_kAAAAJ&hl" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2m0 18H6V4h12v16M8 6h8v2H8V6m0 4h8v2H8v-2Z"/></svg>Google Scholar</a></li>
+          </ul>
+        </li>
         <li class="theme-li">
           <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
-            <svg class="ico sun" viewBox="0 0 24 24"><path fill="currentColor" d="M6.76 4.84 5.34 3.42 3.92 4.84l1.42 1.42 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.66 1.42L17.24 4.84l1.42-1.42 1.42 1.42-1.42 1.42zM20 13h3v-2h-3v2zM12 6a6 6 0 100 12 6 6 0 000-12zm0 16h2v-3h-2v3zM4.84 17.24 3.42 18.66l1.42 1.42 1.42-1.42-1.42-1.42zm14.34 0-1.42 1.42 1.42 1.42 1.42-1.42-1.42-1.42z"/></svg>
-            <svg class="ico moon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            <svg class="ico sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.76 4.84 5.34 3.42 3.92 4.84l1.42 1.42 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.66 1.42L17.24 4.84l1.42-1.42 1.42 1.42-1.42 1.42zM20 13h3v-2h-3v2zM12 6a6 6 0 100 12 6 6 0 000-12zm0 16h2v-3h-2v3zM4.84 17.24 3.42 18.66l1.42 1.42 1.42-1.42-1.42-1.42zm14.34 0-1.42 1.42 1.42 1.42 1.42-1.42-1.42-1.42z"/></svg>
           </button>
         </li>
       </ul>
@@ -124,37 +47,29 @@
   </header>
 
   <div class="wrap">
-    <!-- Page title + quick chips -->
-<header style="padding:8px 0 8px;">
-  <div class="title">
-    <h1 class="page-title" style="margin:0 0 16px; font-size:34px;
-        background:linear-gradient(135deg,var(--brand),var(--violet));
-        -webkit-background-clip:text; color:transparent;">
-      Hassan El Bouz
-    </h1>
-    
-    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <div class="tag" style="margin-top: 0;">Quantum Engineering student • ETH Zurich</div>
-      <a class="chip" href="CV.pdf" download>Download PDF</a>
-    </div>
+    <header style="padding:8px 0 8px;">
+      <div class="title page-cv-title">
+        <h1 class="page-title">Hassan El Bouz</h1>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div class="tag" style="margin-top: 0; cursor: default;">Quantum Engineering student • ETH Zurich</div>
+          <a class="chip" href="CV.pdf" download>Download PDF</a>
+        </div>
+      </div>
+    </header>
 
-  </div>
-  </header>
-
-    <div class="two">
-      <!-- Main column -->
+    <div class="cv-grid">
       <main class="stack">
-        <section class="section card">
+        <section class="section card gold-feature">
           <h2>Education</h2>
           <h3>M.Sc. Quantum Engineering — ETH Zurich</h3>
-          <div class="sub">2025–2027 • Zurich, Switzerland</div>
+          <div class="meta">2025–2027 • Zurich, Switzerland</div>
           <ul>
             <li>Focus: Quantum information, algorithms, and machine learning.</li>
             <li>Sample courses: Quantum Information Processing, Advanced ML, Information Theory.</li>
           </ul>
           <div class="divider"></div>
           <h3>B.S. Physics &amp; Pure Mathematics — AUB</h3>
-          <div class="sub">2022–2025 • Beirut, Lebanon • GPA 4.22/4.0</div>
+          <div class="meta">2022–2025 • Beirut, Lebanon • GPA 4.22/4.0</div>
           <ul>
             <li>Awards: Merit Scholarship; AUB Honor List (all semesters); Muhanna Foundation (Math); Teddy Christidis (Physics); Dr. Mohammad Chatah (Excellence).</li>
           </ul>
@@ -163,7 +78,7 @@
         <section class="section card">
           <h2>Publications</h2>
           <h3>On the local behavior of chains on strongly pseudoconvex hypersurfaces in C<sup>3</sup></h3>
-          <div class="sub">
+          <div class="meta">
             N. Bakaev, S. Ban, <u>H. El Bouz</u>, G. Della Sala, A. Hussein, J. Moussa • Proc. AMS (2025) —
             <a href="https://www.ams.org/journals/proc/2025-153-07/S0002-9939-2025-17225-2/" target="_blank" rel="noopener">Publisher</a>
           </div>
@@ -174,7 +89,7 @@
           <div class="stack">
             <div>
               <h3>Chains on Strongly Pseudoconvex Hypersurfaces</h3>
-              <div class="sub">AUB • Supervisor: Prof. Giuseppe Della Sala • Jun 2023 – Jun 2024</div>
+              <div class="meta">AUB • Supervisor: Prof. Giuseppe Della Sala • Jun 2023 – Jun 2024</div>
               <ul>
                 <li>Classified strongly pseudoconvex hypersurfaces up to biholomorphism using Fefferman’s metric; analyzed null geodesics.</li>
                 <li>Studied chains (images of stationary discs) and derived Chern–Moser normal form conditions for sphere equivalence.</li>
@@ -184,7 +99,7 @@
             <div class="divider"></div>
             <div>
               <h3>Spatio-Temporal Epidemiology with Memory</h3>
-              <div class="sub">AUB • Supervisor: Prof. Fatima Mroueh • Jun 2024 – Present</div>
+              <div class="meta">AUB • Supervisor: Prof. Fatima Mroueh • Jun 2024 – Present</div>
               <ul>
                 <li>Formulated a stochastic integro–differential epidemic model grounded in dynamical systems.</li>
                 <li>Proved existence/uniqueness via functional analysis; implemented numerical solvers (Runge–Kutta + custom schemes).</li>
@@ -194,7 +109,7 @@
             <div class="divider"></div>
             <div>
               <h3>Path-Integral Entropy Loss for Sparse Autoencoders</h3>
-              <div class="sub">AUB • Supervisor: Dr. Sara Najem • May 2025 – Present</div>
+              <div class="meta">AUB • Supervisor: Dr. Sara Najem • May 2025 – Present</div>
               <ul>
                 <li>Created a dynamic neural network that changes its structure adapting to the problem's context.</li>
                 <li>Entropy-based loss inspired by path integrals to promote sparsity and neuron pruning in autoencoders.</li>
@@ -204,7 +119,7 @@
             <div class="divider"></div>
             <div>
               <h3>Distributed Quantum Systems</h3>
-              <div class="sub">AUB • Supervisor: Prof. Mahdi Chehimi • Nov 2024 – Jul 2025</div>
+              <div class="meta">AUB • Supervisor: Prof. Mahdi Chehimi • Nov 2024 – Jul 2025</div>
               <ul>
                 <li>Analyzed conditions under which two-qubit gates can be teleported.</li>
                 <li>Evaluated efficiency and cost of gate cuts for arbitrary gates.</li>
@@ -216,25 +131,24 @@
         <section class="section card">
           <h2>Selected Projects</h2>
           <h3>Dynamic Structure Autoencoder (Capstone)</h3>
-          <div class="sub">Python • PyTorch • Autoencoders — <a href="projects.html">details</a></div>
+          <div class="meta">Python • PyTorch • Autoencoders — <a href="projects.html">details</a></div>
           <ul><li>Model adapts hidden/latent size during training; entropy-inspired sparsity yields efficient representations.</li></ul>
 
           <div class="divider"></div>
 
           <h3>Graph-Coloring via Markov Chains</h3>
-          <div class="sub">Python • MCMC • Complexity — <a href="projects.html">details</a></div>
+          <div class="meta">Python • MCMC • Complexity — <a href="projects.html">details</a></div>
           <ul><li>Polynomial-time estimator for k-colorings on sparse graphs using Markov Chains and Monte-Carlo sampling.</li></ul>
         </section>
       </main>
 
-      <!-- Sidebar -->
       <aside class="stack">
         <section class="section card">
           <h2>Contact</h2>
           <div>Email: <a href="mailto:helbouz@ethz.ch">helbouz@ethz.ch</a></div>
           <div>Phone: +41 79 475 11 76 • +961 76 721 355</div>
           <div>GitHub: <a href="https://github.com/Habouz" target="_blank" rel="noopener">github.com/Habouz</a></div>
-          <div>LinkedIn: <a href="https://linkedin.com/in/hassan-el-bouz-444895177/" target="_blank" rel="noopener">linkedin.com/in/hassan-el-bouz-444895177/</a></div>
+          <div>LinkedIn: <a href="https://linkedin.com/in/hassan-el-bouz-444895177/" target="_blank" rel="noopener">LinkedIn Profile</a></div>
         </section>
 
         <section class="section card">
@@ -283,12 +197,6 @@
     <footer>© <span id="y"></span> Hassan El Bouz — <a href="mailto:helbouz@ethz.ch">helbouz@ethz.ch</a></footer>
   </div>
 
-  <!-- Global JS (handles theme toggle + header interactions) -->
   <script src="assets/app.js" defer></script>
-
-  <!-- Tiny page script: just the year -->
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
